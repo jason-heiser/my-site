@@ -1,0 +1,188 @@
+body {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  letter-spacing: -.015em;
+  color: #666;
+  margin: 0;
+  padding: 0;
+  background-color: #ef4200;
+}
+
+body:before {
+  content: '';
+  position: fixed;
+  z-index: -1;
+  top: 10px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+}
+
+.yks-1 {
+  font-weight: 200;
+}
+
+.yks-2 {
+  font-weight: 300;
+}
+
+.yks-3 {
+  font-weight: normal;
+}
+
+.yks-4 {
+  font-weight: bold;
+}
+
+body > header,
+body > main {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+}
+
+header h1 {
+  position: relative;
+  font-size: 52px;
+  color: #ef4200;
+  margin: 0;
+}
+
+header h1:after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  width: 65px;
+  height: 65px;
+  background-image: url('happy-cloud.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+header h2 {
+  font-weight: 300;
+  margin: 0;
+  line-height: 60%;
+  font-size: 35px;
+  color: #666;
+}
+
+header h3 {
+  color: #00a0da;
+  font-weight: normal;
+  font-size: 27px;
+  margin: 15px 0 0 0;
+}
+
+header img {
+  width: 150px;
+  margin-right: 25px;
+  height: auto;
+}
+
+header + main {
+  margin-top: 15px;
+}
+
+main {
+  min-height: calc(100vh - 160px);
+}
+
+main section {
+  display: flex;
+}
+
+ul.deets {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 25px 0 0;
+}
+
+ul.deets li a {
+  font-size: 16px;
+  color: #ef4200;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul.deets li a:before {
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  background-repeat: no-repeat;
+}
+
+li.geo a:before {
+  background-image: url('geo-pin.svg');
+}
+
+li.email a:before {
+  background-image: url('open-envelope.svg');
+}
+
+li.phone a:before {
+  background-image: url('smartphone.svg');
+}
+
+ul.deets li + li {
+  margin-top: 3px;
+}
+
+article p {
+  margin: 0;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 300;
+}
+
+article p + p {
+  margin-top: 15px;
+}
+
+hr {
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: #ef4200;
+  margin: 25px 0;
+}
+
+.examples h1 {
+  color: #ef4200;
+}
+
+footer {
+  position: relative;
+  background-color: #ef4200;
+  background-image: url('twin-cities-skyline-flipped.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 992px 60px;
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+footer:before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 50%;
+  margin-left: -8px;
+  transform: rotate(45deg);
+  top: -8px;
+  background-color: white;
+}
