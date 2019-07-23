@@ -1,188 +1,298 @@
+/*
+  YANONE KAFFEESATZ
+  Extra Light: 200;
+  Light: 300;
+  Normal: Normal
+  Bold: Bold
+*/
+
+$orange: #ef4200;
+$blue: #00a0da;
+$spacing: 30px;
+$light-text: #666;
+$dark-text: rgba(255, 255, 255, 0.85);
+$light-back: white;
+$dark-back: rgb(30, 32, 36);
+$light-speed: 500ms;
+$footer-height: 90px;
+$header-stripe: 8px;
+$example-rpm: 1s;
+
 body {
   font-family: 'Yanone Kaffeesatz', sans-serif;
   letter-spacing: -.015em;
-  color: #666;
   margin: 0;
-  padding: 0;
-  background-color: #ef4200;
-}
-
-body:before {
-  content: '';
-  position: fixed;
-  z-index: -1;
-  top: 10px;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-color: white;
-}
-
-.yks-1 {
-  font-weight: 200;
-}
-
-.yks-2 {
-  font-weight: 300;
-}
-
-.yks-3 {
-  font-weight: normal;
-}
-
-.yks-4 {
-  font-weight: bold;
-}
-
-body > header,
-body > main {
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-header {
-  margin-top: 50px;
-  display: flex;
-  align-items: center;
-}
-
-header h1 {
-  position: relative;
-  font-size: 52px;
-  color: #ef4200;
-  margin: 0;
-}
-
-header h1:after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  width: 65px;
-  height: 65px;
-  background-image: url('happy-cloud.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-header h2 {
-  font-weight: 300;
-  margin: 0;
-  line-height: 60%;
-  font-size: 35px;
-  color: #666;
-}
-
-header h3 {
-  color: #00a0da;
-  font-weight: normal;
-  font-size: 27px;
-  margin: 15px 0 0 0;
-}
-
-header img {
-  width: 150px;
-  margin-right: 25px;
-  height: auto;
-}
-
-header + main {
-  margin-top: 15px;
+  padding: $header-stripe 0 0 0;
+  background-color: $orange;
 }
 
 main {
-  min-height: calc(100vh - 160px);
+  padding: $spacing * 2;
+  min-height: calc(100vh - 98px);
+  box-sizing: border-box;
+
+  header,
+  section,
+  hr {
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  header {
+
+    hgroup {
+      padding-top: 8px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    h1 {
+      position: relative;
+      font-size: 55px;
+      color: $orange;
+      margin: 0;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        width: 70px;
+        height: 70px;
+        background-image: url('happy-cloud.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+
+    h2 {
+      font-weight: 300;
+      margin: 0;
+      line-height: 60%;
+      font-size: 35px;
+    }
+
+    h3 {
+      color: $blue;
+      font-weight: normal;
+      font-size: 27px;
+      margin: 20px 0 0 0;
+    }
+
+    img {
+      width: 150px;
+      margin-right: 25px;
+      height: auto;
+    }
+  }
+
+  header + section {
+    margin-top: 15px;
+  }
+
+  section {
+    display: flex;
+
+    h4 {
+      text-align: center;
+      flex-basis: 150px;
+      flex-grow: 0;
+      flex-shrink: 0;
+      margin: 0;
+      margin-right: 25px;
+      font-size: 24px;
+      font-weight: normal;
+      color: $orange;
+
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60px;
+        height: auto;
+        margin-bottom: 10px;
+        transform-origin: center;
+        transition: transform $example-rpm + 750ms;
+      }
+    }
+
+    & + hr {
+      border-style: solid;
+      border-width: 0.5px;
+      border-color: $orange;
+      margin-top: $spacing;
+      margin-bottom: $spacing;
+    }
+
+    &.overview { 
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0 25px 0 0;
+        
+        li {
+          & + li {
+            margin-top: 3px;
+          }
+          a {
+            font-size: 18px;
+            color: $orange;
+            width: 150px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+
+            &:before {
+              content: '';
+              display: inline-block;
+              width: 34px;
+              height: 34px;
+              margin-right: 8px;
+              background-repeat: no-repeat;
+            }
+          }
+          &.geo a:before {
+            background-image: url('geo-pin.svg');
+          }
+          
+          &.email a:before {
+            background-image: url('open-envelope.svg');
+          }
+          
+          &.phone a:before {
+            background-image: url('smartphone.svg');
+          }
+        }
+      }
+      article p {
+        margin: 0;
+        font-size: 20px;
+        line-height: 30px;
+        font-weight: 300;
+        text-align: justify;
+      
+        & + p {
+          margin-top: 15px;
+        }
+      }
+    }
+
+    &.examples ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      align-items: stretch;
+      align-content: center;
+      
+      li {
+        transition: transform $example-rpm;
+        transition-timing-function: ease-in-out;
+        transition-delay: 150ms;
+        vertical-align: middle;
+        white-space: normal;
+        display: inline-block;
+        font-size: 32px;
+        font-weight: 200;
+      }
+    }
+
+  }
 }
 
-main section {
-  display: flex;
-}
+main,
+footer a {
+  transition: background-color $light-speed, color $light-speed;
 
-ul.deets {
-  list-style-type: none;
-  padding: 0;
-  margin: 0 25px 0 0;
-}
+  background-color: $light-back;
+  color: $light-text;
 
-ul.deets li a {
-  font-size: 16px;
-  color: #ef4200;
-  width: 150px;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  cursor: pointer;
-}
+  .toggle-light & {
+    background-color: $dark-back;
+    color: $dark-text;
+  }
 
-ul.deets li a:before {
-  content: '';
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin-right: 8px;
-  background-repeat: no-repeat;
-}
+  @media (prefers-color-scheme: dark) {
+    background-color: $dark-back;
+    color: $dark-text;
+    .toggle-light & {
+      background-color: $light-back;
+      color: $light-text;
+    }
+  }
 
-li.geo a:before {
-  background-image: url('geo-pin.svg');
-}
+  @media (prefers-color-scheme: light) {
+    background-color: $light-back;
+    color: $light-text;
+    .toggle-light & {
+      background-color: $dark-back;
+      color: $dark-text;
+    }
+  }
 
-li.email a:before {
-  background-image: url('open-envelope.svg');
-}
+  .light-mode & {
+    background-color: $light-back;
+    color: $light-text;
+  }
 
-li.phone a:before {
-  background-image: url('smartphone.svg');
-}
-
-ul.deets li + li {
-  margin-top: 3px;
-}
-
-article p {
-  margin: 0;
-  font-size: 20px;
-  line-height: 30px;
-  font-weight: 300;
-}
-
-article p + p {
-  margin-top: 15px;
-}
-
-hr {
-  border-style: solid;
-  border-width: 0.5px;
-  border-color: #ef4200;
-  margin: 25px 0;
-}
-
-.examples h1 {
-  color: #ef4200;
+  .dark-mode & {
+    background-color: $dark-back;
+    color: $dark-text;
+  }
 }
 
 footer {
   position: relative;
-  background-color: #ef4200;
+  background-color: $orange;
   background-image: url('twin-cities-skyline-flipped.png');
   background-repeat: no-repeat;
-  background-position: center top;
-  background-size: 992px 60px;
-  color: white;
+  background-position: center bottom;
+  background-size: 992px 90px;
   text-align: center;
-  padding: 25px 0;
-  font-weight: 300;
-  font-size: 14px;
-}
+  padding: 25px 0 0 0;
+  box-sizing: border-box;
+  height: $footer-height;
 
-footer:before {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  left: 50%;
-  margin-left: -8px;
-  transform: rotate(45deg);
-  top: -8px;
-  background-color: white;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 50%;
+    margin-left: -8px;
+    transform: rotate(45deg);
+    top: -8px;
+    transition: background-color $light-speed;
+
+    background-color: $light-back;
+    .toggle-light & {
+      background-color: $dark-back;
+    }
+
+    @media (prefers-color-scheme: light) {
+      background-color: $light-back;
+      .toggle-light & {
+        background-color: $dark-back;
+      }
+    }
+    @media (prefers-color-scheme: dark) {
+      background-color: $dark-back;
+      .toggle-light & {
+        background-color: $light-back;
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 14px;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    user-select: none;
+  }
 }
