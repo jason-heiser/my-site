@@ -19,7 +19,6 @@ $portfolio-transition: 1s;
 $bubble: 12px;
 $fixed-width: 150px;
 $fixed-cushion: 25px;
-$portrait-stroke: 2478.036px;
 
 body {
   font-family: 'Yanone Kaffeesatz', sans-serif;
@@ -56,11 +55,15 @@ main {
       color: $orange;
       margin: 0;
 
-      svg {
+      &:after {
+        content: '';
         position: absolute;
         bottom: -5px;
         width: 70px;
         height: 70px;
+        background-image: url('happy-cloud.svg');
+        background-position: center;
+        background-repeat: no-repeat;
       }
     }
 
@@ -78,57 +81,12 @@ main {
       margin: 20px 0 0 0;
     }
 
-    .self-portrait {
+    img {
       cursor: pointer;
       user-select: none;
       width: $fixed-width;
       margin-right: $fixed-cushion;
       height: auto;
-      #circular-mask path {
-        fill: none;
-        stroke: white;
-        stroke-width: 36px;
-        stroke-dasharray: $portrait-stroke;
-        stroke-dashoffset: 0px;
-        transition: stroke-dashoffset 1s;
-
-        .light-switch & {
-          stroke-dashoffset: $portrait-stroke;
-        }
-      
-        @media (prefers-color-scheme: dark) {
-          stroke-dashoffset: $portrait-stroke;
-          .light-switch & {
-            stroke-dashoffset: 0px;
-          }
-        }
-      
-        @media (prefers-color-scheme: light) {
-          stroke-dashoffset: 0px;
-          .light-switch & {
-            stroke-dashoffset: $portrait-stroke;
-          }
-        }
-
-
-
-
-
-
-
-
-      }
-      .hot-line, .night-line {
-        fill: none;
-        stroke-width: 32px;
-      }
-      .hot-line {
-        stroke: $orange;
-      }
-      .night-line {
-        stroke: $blue;
-        stroke-width: 31px;
-      }
     }
   }
 
@@ -309,7 +267,7 @@ main {
             transition: background-color $portfolio-transition / 2, transform $portfolio-transition / 2;
           }
           &.active:before {
-            transform: scale(2);
+            transform: scale(1.75);
             background-color: $orange;
           }
         }
