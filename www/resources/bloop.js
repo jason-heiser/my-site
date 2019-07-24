@@ -11,7 +11,7 @@ if (window.location.hostname === 'jason.heiser.org') {
 }
 
 window.addEventListener('load', () => document.body.classList.add('ready-freddy'));
-document.querySelector('header img').addEventListener('click', () => document.body.classList.toggle('light-switch'));
+document.querySelector('.theme a').addEventListener('click', () => document.body.classList.toggle('light-switch'));
 
 var portfolio = (function() {
 
