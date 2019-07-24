@@ -10,19 +10,57 @@ if (window.location.hostname === 'jason.heiser.org') {
   })();
 }
 
-(function() {
-  var examples = document.querySelector('section.examples ul');
-  var gear = document.querySelector('section.examples img');
-  var items = examples.querySelectorAll('li');
-  var interval = 0;
-  var index = 0;
+window.addEventListener('load', () => document.body.classList.add('ready-freddy'));
+document.querySelector('svg.self-portrait').addEventListener('click', () => document.body.classList.toggle('light-switch'));
 
-  interval = setInterval(function() {
-    index = index === items.length - 1 ? 0 : index + 1;
-    items.forEach(function(e, i) {
-      e.style.transform = 'translateX(-' + index * 100 + '%)';
-      gear.style.transform = 'rotate(' + index * 180 + 'deg)';
+var portfolio = (function() {
+
+  function makeDirectory() {
+    var directory = document.createElement('ul');
+    directory.classList.add('directory');
+    portfolio.appendChild(directory);
+    items.forEach((e, i) => {
+      var entry = document.createElement('li');
+      directory.appendChild(entry);
+      entry.addEventListener('click', () => goTo(i));
+      entry.setAttribute('role', 'button');
     });
-  }, 7500);
-  
+    return directory;
+  }
+
+  function goTo(index) {
+    savedIndex = index > items.length - 1 ? 0 : index;
+    items.forEach((element, itemIndex) => {
+      var directory = Array.from(document.querySelectorAll('ul.directory li'));
+      directory[itemIndex].setAttribute('class', savedIndex === itemIndex ? 'active' : '');
+      element.style.opacity = savedIndex === itemIndex  ? 1 : 0.15;
+      element.style.transform = 'translateX(-' + savedIndex * 100 + '%)';
+      gear.style.transform = 'rotate(' + savedIndex * 180 + 'deg)';
+    });
+  }
+
+  function runCarousel(yes) {
+    clearInterval(interval);
+    if (yes) {
+      interval = setInterval(() => goTo(savedIndex + 1), 6000);
+    }
+  }
+
+  var interval = 0;
+  var savedIndex = 0;
+  var portfolio = document.querySelector('section.portfolio');
+  var vessel = portfolio.querySelector('ul.examples');
+  var items = vessel.querySelectorAll('li');
+  var gear = document.querySelector('section.portfolio img');
+  var directory = makeDirectory(portfolio, items);
+  vessel.style.overflow = 'hidden';
+
+  [directory, vessel].forEach(element => {
+    ['mouseover'].forEach(event => element.addEventListener(event, () => runCarousel(false)));
+    ['mouseout'].forEach(event => element.addEventListener(event, () => runCarousel(true)));
+  });
+
+  runCarousel(true);
+  goTo(0);
+
 })();
