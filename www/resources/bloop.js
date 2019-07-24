@@ -60,7 +60,7 @@ var portfolio = (function() {
     ['mouseout'].forEach(event => element.addEventListener(event, () => runCarousel(true)));
   });
 
-  runCarousel(true);
-  goTo(0);
+  setTimeout(() => runCarousel(true), 5000); // Delayed until the happy cloud stops fidgeting.
+  goTo(0); // Tee up directory highlight for first item.
 
 })();
