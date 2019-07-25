@@ -16,7 +16,8 @@ $dark-back: rgb(30, 32, 36);
 $light-speed: 250ms;
 $header-stripe: 8px;
 $portfolio-transition: 1s;
-$bubble: 12px;
+$bubble-target: 22px;
+$bubble-cushion: 5px;
 $fixed-width: 150px;
 $fixed-cushion: 25px;
 
@@ -29,8 +30,12 @@ body {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   padding: $spacing * 2 $spacing $spacing * 4 $spacing;
   box-sizing: border-box;
+  min-height: calc(100vh - 100px);
 
   header,
   section,
@@ -274,24 +279,21 @@ main {
         bottom: 0;
         left: $fixed-width + $fixed-cushion;
         right: 0;
-        transform: translateY(350%);
+        transform: translateY(250%);
         li {
           cursor: pointer;
           position: relative;
-          width: $bubble;
-          height: $bubble;
+          width: $bubble-target;
+          height: $bubble-target;
 
-          & + li {
-            margin-left: $bubble;
-          }
           &:before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            border-radius: $bubble / 2;
+            top: $bubble-cushion;
+            right: $bubble-cushion;
+            left: $bubble-cushion;
+            bottom: $bubble-cushion;
+            border-radius: ($bubble-target - ($bubble-cushion * 2)) / 2 ;
             background-color: $blue;
             transform-origin: center;
             transition: background-color $portfolio-transition / 2, transform $portfolio-transition / 2;
