@@ -32,7 +32,7 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   padding: $spacing * 2 $spacing $spacing * 4 $spacing;
   box-sizing: border-box;
   min-height: calc(100vh - 100px);
