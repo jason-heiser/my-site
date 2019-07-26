@@ -100,6 +100,7 @@ main {
     display: flex;
     position: relative;
 
+
     h4 {
       padding-top: 15px;
       text-align: center;
@@ -145,7 +146,7 @@ main {
         
         li {
           & + li {
-            margin-top: 3px;
+            margin-top: 1px;
           }
           a {
             font-size: 16px;
@@ -177,34 +178,48 @@ main {
             background-image: url('smartphone.svg');
           }
 
+          &.resume a:before {
+            background-image: url('document.svg');
+          }
+
+          &.linked-in a:before {
+            background-image: url('linked-in.svg');
+          }
+
           &.theme {
             
             a {
               cursor: pointer;
             }
 
-            a:before { background-image: url('sun.svg'); } 
-            a:after { content: 'Light Theme'; }
+            a:before { background-image: url('sun.svg'); }
+            .light { display: 'inline'; }
+            .dark { display: 'none'; }
 
             .light-switch & {
               a:before { background-image: url('moon.svg'); }
-              a:after { content: 'Dark Theme'; }
+              .light { display: 'none'; }
+              .dark { display: 'inline'; }
             }
         
             @media (prefers-color-scheme: light) {
               a:before { background-image: url('sun.svg'); } 
-              a:after { content: 'Light Theme'; }
+              .light { display: 'inline'; }
+              .dark { display: 'none'; }
               .light-switch & {
                 a:before { background-image: url('moon.svg'); }
-                a:after { content: 'Dark Theme'; }
+                .light { display: 'none'; }
+                .dark { display: 'inline'; }
               }
             }
             @media (prefers-color-scheme: dark) {
               a:before { background-image: url('moon.svg'); }
-              a:after { content: 'Dark Theme'; }
+              .light { display: 'none'; }
+              .dark { display: 'inline'; }
               .light-switch & {
-                a:before { background-image: url('sun.svg'); } 
-                a:after { content: 'Light Theme'; }
+                a:before { background-image: url('sun.svg'); }
+                .light { display: 'inline'; }
+                .dark { display: 'none'; }
               }
             }
 
