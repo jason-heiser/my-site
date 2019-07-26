@@ -1,0 +1,1 @@
+rsync -vrt www/* cloud:/var/www/heiser.org/jason/
