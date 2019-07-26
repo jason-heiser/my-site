@@ -37,6 +37,43 @@ main {
   box-sizing: border-box;
   min-height: calc(100vh - 100px);
 
+  transition: background-color $light-speed, color $light-speed;
+  background-color: $light-back;
+  color: $light-text;
+
+  .light-switch & {
+    background-color: $dark-back;
+    color: $dark-text;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: $dark-back;
+    color: $dark-text;
+    .light-switch & {
+      background-color: $light-back;
+      color: $light-text;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    background-color: $light-back;
+    color: $light-text;
+    .light-switch & {
+      background-color: $dark-back;
+      color: $dark-text;
+    }
+  }
+
+  .light-mode & {
+    background-color: $light-back;
+    color: $light-text;
+  }
+
+  .dark-mode & {
+    background-color: $dark-back;
+    color: $dark-text;
+  }
+
   header,
   section,
   hr {
@@ -320,46 +357,6 @@ main {
         }
       }
     }
-  }
-}
-
-main {
-  transition: background-color $light-speed, color $light-speed;
-
-  background-color: $light-back;
-  color: $light-text;
-
-  .light-switch & {
-    background-color: $dark-back;
-    color: $dark-text;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    background-color: $dark-back;
-    color: $dark-text;
-    .light-switch & {
-      background-color: $light-back;
-      color: $light-text;
-    }
-  }
-
-  @media (prefers-color-scheme: light) {
-    background-color: $light-back;
-    color: $light-text;
-    .light-switch & {
-      background-color: $dark-back;
-      color: $dark-text;
-    }
-  }
-
-  .light-mode & {
-    background-color: $light-back;
-    color: $light-text;
-  }
-
-  .dark-mode & {
-    background-color: $dark-back;
-    color: $dark-text;
   }
 }
 
