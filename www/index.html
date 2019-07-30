@@ -4,7 +4,7 @@
   <title>Jason Heiser, Full-Stack Web Developer</title>
   <meta charset="UTF-8">
   <meta name="author" content="Jason Heiser">
-  <meta name="viewport" content="width=650">
+  <meta name="viewport" content="width=device-width">
   <meta property="og:title" content="Jason Heiser">
   <meta property="og:description" content="Full-stack web developer with deep experience.">
   <meta property="og:type" content="website">
@@ -22,9 +22,11 @@
   <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,300,400,700&display=swap" rel="stylesheet">
 </head>
 
-<body>
-
+<body id="information">
   <main>
+
+    <a role="button" href="#information" class="show hamburger" title="Show Links"></a>
+    <a role="button" href="#" class="hide hamburger" title="Hide Links"></a>
 
     <header>
       <img src="resources/self-portrait.png" alt="Jason Heiser">
@@ -36,6 +38,7 @@
     </header>
 
     <section class="overview">
+      <h4 hidden>Informational Links</h4>
       <ul>
         <li class="geo">
           <a href="https://goo.gl/maps/WEnSueDiEx39yvwm6" target="_BLANK">
@@ -63,13 +66,14 @@
           </a>
 
         <li class="theme">
-          <a role="button" title="Toggle Theme">
-            <span class="light">Light Theme</span>
-            <span class="dark">Dark Theme</span>
+          <a role="button">
+            Light Switch
           </a>
 
       </ul>
+
       <article>
+        <h4 hidden>About Jason</h4>
         <p>
           I do server-side work on the back-end, client-side work on the front-end, and lots of other stuff in between. My uncommon versatility makes me self-reliant, enthusiastic about my work, and useful to others.
         </p>
@@ -77,8 +81,11 @@
           Presently I am looking for front-end work that is creatively rewarding and pushes the limits of my abilities.
         </p>
       </article>
+
     </section>
+
     <hr>
+
     <section class="portfolio">
       <h4>
         <img src="resources/gear.svg" alt="Gear">
@@ -120,16 +127,19 @@
           Modified design assets with my expertise in Photoshop and background in graphic design.
 
         <li>
-          Wrote a Bash script that Gulp-compiles SASS+JS then deploys an entire website via SCP.
+          Wrote a Bash script that Gulp-compiles SASS+JS then deploys all changed files via rsync.
 
         <li>
           Built a Cordova-based mobile app that connects an iPad, a Honeywell Captuvo scanner, and a website.
+
       </ul>
+
     </section>
   </main>
-  <footer>
-    Thanks for stopping by!
-  </footer>
+
+  <footer>Thanks for stopping by!</footer>
+
   <script src="resources/bloop.js"></script>
+
 </body>
 </html>

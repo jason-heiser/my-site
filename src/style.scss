@@ -8,7 +8,7 @@
 
 $orange: #ef4200;
 $blue: #00a0da;
-$spacing: 30px;
+$spacing: 25px;
 $light-text: #666;
 $dark-text: rgba(255, 255, 255, 0.85);
 $light-back: white;
@@ -16,85 +16,162 @@ $dark-back: rgb(30, 32, 36);
 $light-speed: 250ms;
 $header-stripe: 8px;
 $portfolio-transition: 1s;
-$bubble-target: 22px;
+$bubble-target: 20px;
 $bubble-cushion: 5px;
-$fixed-width: 150px;
-$fixed-cushion: 25px;
+$fixed-column-width: 150px;
+$desktop-content-width: 550px;
+$mobile-icon: 12vw;
+
+@mixin mobile-only {
+  @media only screen and (max-width: $desktop-content-width + ($spacing * 2)) { @content; }
+}
+
+@mixin hamburger-cloak {
+  transition: opacity $light-speed;
+  @include mobile-only {
+    body:target & {
+      opacity: 0;
+    }
+  }
+}
 
 body {
   font-family: 'Yanone Kaffeesatz', sans-serif;
   letter-spacing: -.015em;
   margin: 0;
-  padding: $header-stripe 0 0 0;
+  padding: 0;
   background-color: $orange;
+  &:before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: $header-stripe;
+    background-color: $orange;
+    z-index: 1;
+  }
 }
 
 main {
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: $spacing * 2 $spacing $spacing * 4 $spacing;
   box-sizing: border-box;
-  min-height: calc(100vh - 100px);
-
-  transition: background-color $light-speed, color $light-speed;
-  background-color: $light-back;
-  color: $light-text;
-
-  .light-switch & {
-    background-color: $dark-back;
-    color: $dark-text;
+  @include mobile-only {
+    padding-bottom: $spacing * 2;
   }
 
-  @media (prefers-color-scheme: dark) {
-    background-color: $dark-back;
-    color: $dark-text;
-    .light-switch & {
-      background-color: $light-back;
-      color: $light-text;
+
+   /* BEGIN: Light Switching */
+   transition: background-color $light-speed, color $light-speed;
+   background-color: $light-back;
+   color: $light-text;
+ 
+   .light-switch & {
+     background-color: $dark-back;
+     color: $dark-text;
+   }
+ 
+   @media (prefers-color-scheme: dark) {
+     background-color: $dark-back;
+     color: $dark-text;
+     .light-switch & {
+       background-color: $light-back;
+       color: $light-text;
+     }
+   }
+ 
+   @media (prefers-color-scheme: light) {
+     background-color: $light-back;
+     color: $light-text;
+     .light-switch & {
+       background-color: $dark-back;
+       color: $dark-text;
+     }
+   }
+ 
+   .light-mode & {
+     background-color: $light-back;
+     color: $light-text;
+   }
+ 
+   .dark-mode & {
+     background-color: $dark-back;
+     color: $dark-text;
+   }
+   /* END: Light Switching */
+
+  a.hamburger {
+    position: absolute;
+    top: 10px + $header-stripe;
+    right: 10px;
+    outline: none;
+    display: none;
+    width: $mobile-icon;
+    height: $mobile-icon;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    &.show {
+      background-image: url('hamburger.svg');
+      @include mobile-only {
+        display: block;
+      }
+      body:target & {
+        display: none;
+        @include mobile-only {
+          & + a.hide {
+            display: block;
+          }
+        }
+      }
+    }
+    &.hide{
+      background-image: url('close-x.svg');
     }
   }
 
-  @media (prefers-color-scheme: light) {
-    background-color: $light-back;
-    color: $light-text;
-    .light-switch & {
-      background-color: $dark-back;
-      color: $dark-text;
-    }
-  }
-
-  .light-mode & {
-    background-color: $light-back;
-    color: $light-text;
-  }
-
-  .dark-mode & {
-    background-color: $dark-back;
-    color: $dark-text;
-  }
-
-  header,
-  section,
-  hr {
-    width: 550px;
+  header, section, hr {
+    width: $desktop-content-width;
     margin-left: auto;
     margin-right: auto;
+    @include mobile-only {
+      width: calc(100vw - #{ $spacing * 2 });
+    }
   }
 
   header {
 
-    hgroup {
-      padding-top: 8px;
+    white-space: nowrap;
+    
+    & > * {
+      vertical-align: middle;
       display: inline-block;
-      vertical-align: top;
+    }
+
+    img {
+      width: $fixed-column-width;
+      margin-right: $spacing;
+      height: auto;
+      @include mobile-only {
+        margin-right: 4.5vw;
+        width: 27vw;
+      }
     }
 
     h1 {
       position: relative;
-      font-size: 55px;
+      font-size: 56px;
       color: $orange;
       margin: 0;
+
+      @include mobile-only {
+        font-size: 10.5vw;
+      }
 
       &:after {
         content: '';
@@ -105,6 +182,9 @@ main {
         background-image: url('happy-cloud.svg');
         background-position: center;
         background-repeat: no-repeat;
+        @include mobile-only {
+          display: none;
+        }
       }
     }
 
@@ -112,7 +192,10 @@ main {
       font-weight: 300;
       margin: 0;
       line-height: 60%;
-      font-size: 35px;
+      font-size: 36px;
+      @include mobile-only {
+        font-size: 6.5vw;
+      }
     }
 
     h3 {
@@ -120,12 +203,10 @@ main {
       font-weight: normal;
       font-size: 27px;
       margin: 20px 0 0 0;
-    }
-
-    img {
-      width: $fixed-width;
-      margin-right: $fixed-cushion;
-      height: auto;
+      @include mobile-only {
+        margin-top: 4.5vw;
+        font-size: 4.5vw;
+      }
     }
   }
 
@@ -137,18 +218,25 @@ main {
     display: flex;
     position: relative;
 
+    @include mobile-only {
+      display: block;
+    }
 
     h4 {
       padding-top: 15px;
       text-align: center;
-      flex-basis: $fixed-width;
+      flex-basis: $fixed-column-width;
       flex-grow: 0;
       flex-shrink: 0;
       margin: 0;
-      margin-right: $fixed-cushion;
+      margin-right: $spacing;
       font-size: 24px;
       font-weight: normal;
       color: $orange;
+
+      @include mobile-only {
+        display: none;
+      }
 
       img {
         display: block;
@@ -159,40 +247,67 @@ main {
         margin-bottom: 10px;
         transform-origin: center;
         transition: transform $portfolio-transition + 500ms;
+        @include mobile-only {
+          display: none;
+        }
       }
     }
 
-    & + hr {
-      border-style: solid;
-      border-width: 0.5px;
-      border-color: $orange;
-      margin-top: $spacing;
-      margin-bottom: $spacing;
-    }
+    &.overview {
 
-    &.portfolio + hr {
-      margin-top: $spacing + 30px;
-    }
-
-    &.overview { 
       ul {
         list-style-type: none;
         padding: 0;
-        margin: 0 0 0 0;
-        margin-right: $fixed-cushion;
+        margin: 0;
+        margin-right: $spacing;
+
+        @include mobile-only {
+          z-index: 1;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: space-evenly;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin-right: 0;
+          pointer-events: none;
+          transform: translateY(8px);
+          transition: transform $light-speed, opacity $light-speed;
+          opacity: 0;
+          text-align: center;
+          body:target & {
+            opacity: 1;
+            transform: translateY(0px);
+            pointer-events: all;
+          }
+        }
         
         li {
-          & + li {
-            margin-top: 1px;
+          @include mobile-only {
+            display: inline-block;
+            flex-basis: 33%;
+            box-sizing: border-box;
+            margin: 0;
           }
           a {
             font-size: 16px;
             color: $orange;
-            width: $fixed-width;
+            width: $fixed-column-width;
             display: flex;
             align-items: center;
             text-decoration: none;
             cursor: pointer;
+
+            @include mobile-only {
+              display: block;
+              font-size: 4vw;
+              width: auto;
+              text-align: center;
+            }
 
             &:before {
               content: '';
@@ -201,6 +316,13 @@ main {
               height: 32px;
               margin-right: 8px;
               background-repeat: no-repeat;
+              @include mobile-only {
+                display: block;
+                margin: 0 auto;
+                margin-bottom: 5px;
+                width: $mobile-icon;
+                height: $mobile-icon;
+              }
             }
           }
           &.geo a:before {
@@ -230,53 +352,55 @@ main {
             }
 
             a:before { background-image: url('sun.svg'); }
-            .light { display: 'inline'; }
-            .dark { display: 'none'; }
 
             .light-switch & {
               a:before { background-image: url('moon.svg'); }
-              .light { display: 'none'; }
-              .dark { display: 'inline'; }
             }
         
             @media (prefers-color-scheme: light) {
               a:before { background-image: url('sun.svg'); } 
-              .light { display: 'inline'; }
-              .dark { display: 'none'; }
               .light-switch & {
                 a:before { background-image: url('moon.svg'); }
-                .light { display: 'none'; }
-                .dark { display: 'inline'; }
               }
             }
             @media (prefers-color-scheme: dark) {
               a:before { background-image: url('moon.svg'); }
-              .light { display: 'none'; }
-              .dark { display: 'inline'; }
               .light-switch & {
                 a:before { background-image: url('sun.svg'); }
-                .light { display: 'inline'; }
-                .dark { display: 'none'; }
               }
             }
-
           }
         }
       }
-      article p {
-        margin: 0;
-        font-size: 20px;
-        line-height: 30px;
-        font-weight: 300;
-        text-align: justify;
-      
-        & + p {
-          margin-top: 15px;
+      article {
+
+        p {
+          margin: 0;
+          font-size: 20px;
+          line-height: 25px;
+          font-weight: 300;
+          text-align: justify;
+
+          @include mobile-only {
+            font-size: 4.5vw;
+            line-height: calc(5vw * 1.25);
+          }
+
+          @include hamburger-cloak;
+        
+          & + p {
+            margin-top: 15px;
+          }
         }
       }
     }
 
     &.portfolio {
+
+      @include mobile-only {
+        margin-top: $spacing;
+      }
+
       ul.examples {
         list-style-type: none;
         padding: 0;
@@ -285,6 +409,10 @@ main {
         overflow: auto;
         align-items: stretch;
         align-content: center;
+
+        @include mobile-only {
+          margin-top: $spacing;
+        }
         
         li {
           transition: transform $portfolio-transition, opacity $portfolio-transition * 0.8;
@@ -296,6 +424,10 @@ main {
           font-size: 32px;
           line-height: 40px;
           font-weight: 200;
+          @include mobile-only {
+            font-size: 7.5vw;
+            line-height: calc(7.5vw * 1.25);
+          }
           a {
             display: block;
             text-decoration: none;
@@ -308,14 +440,18 @@ main {
             &:after {
               content: '';
               position: absolute;
-              width: 30px;
-              height: 30px;
+              width: 38px;
+              height: 38px;
               background-image: url('hyperlink.svg');
               background-repeat: no-repeat;
               background-position: center;
               background-size: contain;
               margin-left: 8px;
-              bottom: 3px;
+              @include mobile-only {
+                margin-left: 1vw;
+                width: 8.25vw;
+                height: 8.25vw;
+              }
             }
           }
         }
@@ -329,9 +465,15 @@ main {
         padding: 0;
         margin: 0;
         bottom: 0;
-        left: $fixed-width + $fixed-cushion;
+        left: $fixed-column-width + $spacing;
         right: 0;
         transform: translateY(250%);
+        @include mobile-only {
+          left: 0;
+          bottom: initial;
+          top: -10px;
+          transform: none;
+        }
         li {
           cursor: pointer;
           position: relative;
@@ -358,6 +500,17 @@ main {
       }
     }
   }
+
+  hr {
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: $orange;
+    margin-top: $spacing;
+    margin-bottom: $spacing;
+    @include mobile-only {
+      display: none;
+    }
+  }
 }
 
 footer {
@@ -365,7 +518,7 @@ footer {
   background-color: $orange;
   background-image: url('upside-down.png'), url('john-hancock.png');
   background-repeat: no-repeat;
-  background-position: center top, center 25px;
+  background-position: center top, center 30px;
   background-size: 992px 90px, 218px 53px;
   text-align: center;
   padding: 25px 0 0 0;
