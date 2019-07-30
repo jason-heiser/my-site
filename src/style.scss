@@ -20,7 +20,7 @@ $bubble-target: 20px;
 $bubble-cushion: 5px;
 $fixed-column-width: 150px;
 $desktop-content-width: 550px;
-$mobile-icon: 12vw;
+$mobile-icon: 11vw;
 
 @mixin mobile-only {
   @media only screen and (max-width: $desktop-content-width + ($spacing * 2)) { @content; }
