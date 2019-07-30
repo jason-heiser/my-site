@@ -319,7 +319,7 @@ main {
               @include mobile-only {
                 display: block;
                 margin: 0 auto;
-                margin-bottom: 5px;
+                margin-bottom: 2px;
                 width: $mobile-icon;
                 height: $mobile-icon;
               }
@@ -377,7 +377,7 @@ main {
         p {
           margin: 0;
           font-size: 20px;
-          line-height: 25px;
+          line-height: 30px;
           font-weight: 300;
           text-align: justify;
 

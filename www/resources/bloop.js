@@ -1,3 +1,15 @@
+/*
+       $$$$$\ $$\   $$\ 
+       \__$$ |$$ |  $$ |
+          $$ |$$ |  $$ |
+          $$ |$$$$$$$$ |
+    $$\   $$ |$$  __$$ |
+    $$ |  $$ |$$ |  $$ |
+    \$$$$$$  |$$ |  $$ |
+     \______/ \__|  \__|
+     Jason Heiser - 2019
+ */
+
 if (window.location.hostname === 'jason.heiser.org') {
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-2723051-1']);
