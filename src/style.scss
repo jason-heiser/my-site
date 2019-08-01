@@ -26,18 +26,9 @@ $mobile-icon: 11vw;
   @media only screen and (max-width: $desktop-content-width + ($spacing * 2)) { @content; }
 }
 
-@mixin hamburger-cloak {
-  transition: opacity $light-speed;
-  @include mobile-only {
-    body:target & {
-      opacity: 0;
-    }
-  }
-}
-
 body {
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  letter-spacing: -.015em;
+  letter-spacing: -.02em;
   margin: 0;
   padding: 0;
   background-color: $orange;
@@ -304,7 +295,7 @@ main {
 
             @include mobile-only {
               display: block;
-              font-size: 4vw;
+              font-size: 4.5vw;
               width: auto;
               text-align: center;
             }
@@ -374,6 +365,14 @@ main {
       }
       article {
 
+        transition: opacity $light-speed;
+
+        @include mobile-only {
+          body:target & {
+            opacity: 0;
+          }
+        }
+
         p {
           margin: 0;
           font-size: 20px;
@@ -383,10 +382,8 @@ main {
 
           @include mobile-only {
             font-size: 4.5vw;
-            line-height: calc(5vw * 1.25);
+            line-height: calc(4.5vw * 1.33);
           }
-
-          @include hamburger-cloak;
         
           & + p {
             margin-top: 15px;
