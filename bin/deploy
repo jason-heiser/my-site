@@ -1,2 +1,2 @@
 docker-compose run node ./node_modules/gulp/bin/gulp.js sass && \
-rsync -vrt www/* cloud:/var/www/heiser.org/jason/
+rsync -vrt www/* cloud:/var/www/jason.heiser.org/
