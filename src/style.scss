@@ -26,14 +26,18 @@ $mobile-icon: 10.5vw;
   @media only screen and (max-width: $desktop-content-width + ($spacing * 2)) { @content; }
 }
 
+@mixin mobile-text {
+  @include mobile-only {
+    font-weight: 300;
+    font-size: 7vw;
+    line-height: calc(7vw * 1.25);
+  }
+}
+
 @mixin jumbotron {
   font-size: 32px;
   line-height: 40px;
   font-weight: 200;
-  @include mobile-only {
-    font-size: 7vw;
-    line-height: calc(7vw * 1.25);
-  }
 }
 
 body {
@@ -429,11 +433,7 @@ main {
           line-height: 30px;
           font-weight: 300;
           text-align: justify;
-
-          @include mobile-only {
-            font-size: 4.5vw;
-            line-height: calc(4.5vw * 1.5);
-          }
+          @include mobile-text;
         
           & + p {
             margin-top: 15px;
@@ -460,6 +460,7 @@ main {
       p {
         margin: 0;
         @include jumbotron;
+        @include mobile-text;
         &:before {
           font-weight: normal;
           position: absolute;
@@ -501,6 +502,7 @@ main {
           white-space: normal;
           display: inline-block;
           @include jumbotron;
+          @include mobile-text;
           a.icon {
             display: block;
             &:after {
