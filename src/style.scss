@@ -29,20 +29,20 @@ $mobile-icon: 10.5vw;
 @mixin mobile-text {
   @include mobile-only {
     font-weight: 300;
-    font-size: 7vw;
-    line-height: calc(7vw * 1.25);
+    font-size: 6.9vw;
+    line-height: calc(6.9vw * 1.25);
   }
 }
 
 @mixin jumbotron {
-  font-size: 32px;
-  line-height: 40px;
+  font-size: 30px;
+  line-height: 38px;
   font-weight: 200;
 }
 
 body {
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  letter-spacing: -.02em;
+  letter-spacing: -.01em;
   margin: 0;
   padding: 0;
   background-color: $orange;
@@ -235,7 +235,7 @@ main {
       font-size: 28px;
       letter-spacing: 0.2em;
       @include mobile-only {
-        font-size: 6.25vw;
+        font-size: 6.5vw;
         letter-spacing: inherit;
       }
     }
@@ -432,9 +432,14 @@ main {
           font-size: 20px;
           line-height: 30px;
           font-weight: 300;
-          text-align: justify;
+
           @include mobile-text;
-        
+
+          &:nth-of-type(2) {
+            @include mobile-only {
+              display: none;
+            }
+          }
           & + p {
             margin-top: 15px;
           }
@@ -477,9 +482,23 @@ main {
           color: $blue;
         }
       }
-      article a {
-        display: flex;
-        flex-direction: column-reverse;
+      article {
+        display: none;
+        &:nth-of-type(1) {
+          display: block;
+        }
+        @include mobile-only {
+          &:nth-of-type(1) {
+            display: none;
+          }
+          &:nth-of-type(2) {
+            display: block;
+          }
+        }
+        a {
+          display: flex;
+          flex-direction: column-reverse;
+        }
       }
     }
 
