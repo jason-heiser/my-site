@@ -23,19 +23,46 @@ if (window.location.hostname === 'jason.heiser.org') {
 }
 
 window.addEventListener('load', () => document.body.classList.add('ready-freddy'));
-document.querySelector('.theme a').addEventListener('click', () => document.body.classList.toggle('light-switch'));
 
-var plaudits = (() => {
-  var plaudit = 'plaudit-toggle';
-  if (document.cookie.indexOf(plaudit) === -1) {
-    document.cookie = plaudit + '=yes';
-  } else {
-    document.body.classList.add(plaudit);
-    document.cookie = plaudit + '=  ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+(() => {
+
+  var lightClass = 'light-switch';
+
+  document.querySelector('.theme a').addEventListener('click', () => {
+    lightSwitch();
+    saveSwitch();
+  });
+
+  function lightSwitch() {
+    document.body.classList.toggle(lightClass);
   }
+
+  function saveSwitch() {
+    if (localStorage.getItem(lightClass) === 'yes') {
+      localStorage.setItem(lightClass, 'no');
+    } else {
+      localStorage.setItem(lightClass, 'yes');
+    }
+  }
+
+  localStorage.getItem(lightClass) === 'yes' && lightSwitch();
+  
 })();
 
-var portfolio = (() => {
+(() => {
+
+  var plauditClass = 'plaudit-toggle';
+
+  if (localStorage.getItem(plauditClass) === 'yes') {
+    localStorage.setItem(plauditClass, 'no');
+    document.body.classList.add(plauditClass);
+  } else {
+    localStorage.setItem(plauditClass, 'yes');
+  }
+
+})();
+
+(() => {
 
   function makeDirectory() {
     var directory = document.createElement('ul');
