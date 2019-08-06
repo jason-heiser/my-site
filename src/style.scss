@@ -68,7 +68,7 @@ main {
   box-sizing: border-box;
 
    /* BEGIN: Light Switching */
-   transition: background-color $light-speed, color $light-speed;
+   .ready-freddy & { transition: background-color $light-speed, color $light-speed }
    background-color: $light-back;
    color: $light-text;
  
@@ -138,7 +138,7 @@ main {
   }
 
   a {
-    transition: color $light-speed;
+    .ready-freddy & { transition: color $light-speed }
     text-decoration: none;
     color: $light-text;
  
@@ -321,7 +321,7 @@ main {
           margin-right: 0;
           pointer-events: none;
           transform: translateY(8px);
-          transition: transform $light-speed, opacity $light-speed;
+          .ready-freddy & { transition: transform $light-speed, opacity $light-speed };
           opacity: 0;
           text-align: center;
           body:target & {
@@ -419,7 +419,7 @@ main {
       }
       article {
 
-        transition: opacity $light-speed;
+        .ready-freddy & { transition: opacity $light-speed }
 
         @include mobile-only {
           body:target & {
@@ -617,7 +617,7 @@ footer {
     margin-left: -8px;
     transform: rotate(45deg);
     top: -8px;
-    transition: background-color $light-speed;
+    .ready-freddy & { transition: background-color $light-speed }
 
     background-color: $light-back;
     .light-switch & {
