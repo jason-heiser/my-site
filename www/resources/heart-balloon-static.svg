@@ -7,23 +7,6 @@
       path#heart-right,
 			path#heart-left {
         fill: #ef4200;
-        animation-direction: alternate;
-        animation-duration: 1s;
-        animation-iteration-count: infinite;
-        transform-origin: center;
-      }
-      path#heart-right {
-        animation-name: pulse-right;
-      }
-      path#heart-left {
-        animation-name: pulse-left;
-        transform-origin: 77px 83px;
-      }
-      @keyframes pulse-left {
-        to   { transform: scale(0.5) }
-      }
-      @keyframes pulse-right {
-        to   { transform: scale(1.25) }
       }
     </style>
   </defs>

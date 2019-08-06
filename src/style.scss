@@ -278,9 +278,16 @@ main {
       letter-spacing: 0.25em;
       color: $orange;
 
+      span {
+        margin-left: 0.25em;
+      }
+
       @include mobile-only {
         text-align: left;
         transform: translateY(-6px);
+        span {
+          margin-left: 0;
+        }
       }
 
       img {
