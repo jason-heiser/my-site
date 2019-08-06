@@ -447,7 +447,7 @@ main {
       }
     }
 
-    &.praise {
+    &.plaudits {
       h5 {
         color: $blue;
         margin: 0;
@@ -483,18 +483,20 @@ main {
         }
       }
       article {
-        display: none;
-        &:nth-of-type(1) {
-          display: block;
-        }
+
+        &:nth-of-type(1) { display: block }
+        &:nth-of-type(2) { display: none }
+
+        body.plaudit-toggle &:nth-of-type(1) { display: none }
+        body.plaudit-toggle &:nth-of-type(2) { display: block }
+
         @include mobile-only {
-          &:nth-of-type(1) {
-            display: none;
-          }
-          &:nth-of-type(2) {
-            display: block;
-          }
+          &:nth-of-type(1) { display: none }
+          &:nth-of-type(2) { display: block }
+          body.plaudit-toggle &:nth-of-type(1) { display: block }
+          body.plaudit-toggle &:nth-of-type(2) { display: none }
         }
+
         a {
           display: flex;
           flex-direction: column-reverse;

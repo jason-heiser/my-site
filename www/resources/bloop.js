@@ -25,7 +25,17 @@ if (window.location.hostname === 'jason.heiser.org') {
 window.addEventListener('load', () => document.body.classList.add('ready-freddy'));
 document.querySelector('.theme a').addEventListener('click', () => document.body.classList.toggle('light-switch'));
 
-var portfolio = (function() {
+var plaudits = (() => {
+  var plaudit = 'plaudit-toggle';
+  if (document.cookie.indexOf(plaudit) === -1) {
+    document.cookie = plaudit + '=yes';
+  } else {
+    document.body.classList.add(plaudit);
+    document.cookie = plaudit + '=  ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+  }
+})();
+
+var portfolio = (() => {
 
   function makeDirectory() {
     var directory = document.createElement('ul');
