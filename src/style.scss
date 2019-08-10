@@ -14,7 +14,7 @@ $dark-text: rgba(255, 255, 255, 0.85);
 $light-back: white;
 $dark-back: rgb(30, 32, 36);
 $light-speed: 333ms;
-$header-stripe: 8px;
+$header-stripe: 5px;
 $portfolio-transition: 1s;
 $bubble-target: 20px;
 $bubble-cushion: 5px;
@@ -29,8 +29,8 @@ $mobile-icon: 10.5vw;
 @mixin mobile-text {
   @include mobile-only {
     font-weight: 300;
-    font-size: 6.9vw;
-    line-height: calc(6.9vw * 1.25);
+    font-size: 6.75vw;
+    line-height: calc(6.75vw * 1.25);
   }
 }
 
@@ -42,7 +42,6 @@ $mobile-icon: 10.5vw;
 
 body {
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  letter-spacing: -.01em;
   margin: 0;
   padding: 0;
   background-color: $orange;
@@ -106,7 +105,7 @@ main {
    }
    /* END: Light Switching */
 
-  a.hamburger {
+  a.bento {
     position: absolute;
     top: 10px + $header-stripe;
     right: 10px;
@@ -119,7 +118,7 @@ main {
     background-size: contain;
 
     &.show {
-      background-image: url('hamburger.svg');
+      background-image: url('bento.svg');
       @include mobile-only {
         display: block;
       }
@@ -197,8 +196,8 @@ main {
       margin-right: $spacing;
       height: auto;
       @include mobile-only {
-        margin-right: 4.5vw;
-        width: 27vw;
+        margin-right: 4vw;
+        width: 22vw;
       }
     }
 
@@ -246,7 +245,7 @@ main {
       font-size: 27px;
       margin: 20px 0 0 0;
       @include mobile-only {
-        margin-top: 4.5vw;
+        margin-top: 2vw;
         font-size: 4.5vw;
       }
     }
@@ -327,7 +326,7 @@ main {
           bottom: 0;
           margin-right: 0;
           pointer-events: none;
-          transform: translateY(8px);
+          transform: translateY(10px);
           .ready-freddy & { transition: transform $light-speed, opacity $light-speed };
           opacity: 0;
           text-align: center;
