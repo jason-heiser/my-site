@@ -66,6 +66,15 @@ main {
   padding-bottom: $spacing * 4;
   box-sizing: border-box;
 
+  background-image: url(vector-landscape.png);
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+
+  @include mobile-only {
+    background-size: $desktop-content-width * 2;
+  }
+
    /* BEGIN: Light Switching */
    .ready-freddy & { transition: background-color $light-speed, color $light-speed }
    background-color: $light-back;
