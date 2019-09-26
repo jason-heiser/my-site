@@ -450,6 +450,13 @@ main {
 
           @include mobile-text;
 
+          a {
+            text-decoration: underline;
+            &:hover, &:active {
+              color: $orange;
+            }
+          }
+
           &:nth-of-type(2) {
             @include mobile-only {
               display: none;
