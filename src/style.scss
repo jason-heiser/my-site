@@ -65,6 +65,7 @@ main {
   padding-top: $spacing * 2;
   padding-bottom: $spacing * 4;
   box-sizing: border-box;
+  min-height: calc(100vh - 95px);
 
   background-image: url(vector-landscape.png);
   background-size: cover;
