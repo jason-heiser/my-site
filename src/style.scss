@@ -47,7 +47,7 @@ body {
   background-color: $orange;
   opacity: 0;
   transition: opacity 1s, transform 1s;
-  transform: translateY(100px);
+  transform: translateY(50px);
   &.ready-freddy {
     transform: translateY(0);
     opacity: 1;

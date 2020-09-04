@@ -22,7 +22,10 @@ if (window.location.hostname === 'jason.heiser.org') {
   })();
 }
 
-window.addEventListener('load', () => document.body.classList.add('ready-freddy'));
+window.addEventListener('load', () => {
+  document.body.classList.add('ready-freddy');
+  document.querySelector('header img').setAttribute('src', 'resources/self-portrait.png');
+});
 
 (() => {
 
