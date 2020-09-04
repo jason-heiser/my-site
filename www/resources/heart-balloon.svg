@@ -5,7 +5,7 @@
         fill: #00a0da;
       }
       path#heart-right,
-			path#heart-left {
+      path#heart-left {
         fill: #ef4200;
         animation-direction: alternate;
         animation-duration: 1s;
