@@ -137,7 +137,7 @@ main {
     background-size: contain;
 
     &.show {
-      background-image: url('bento.svg');
+      background-image: url('hamburger.svg');
       @include mobile-only {
         display: block;
       }
