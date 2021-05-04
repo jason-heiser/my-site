@@ -45,13 +45,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: $orange;
-  opacity: 0;
-  transition: opacity 1s, transform 1s;
-  transform: translateY(50px);
-  &.ready-freddy {
-    transform: translateY(0);
-    opacity: 1;
-  }
   &:before {
     content: '';
     position: fixed;
@@ -74,10 +67,12 @@ main {
   box-sizing: border-box;
   min-height: calc(100vh - 95px);
 
-  background-image: url(vector-landscape.png);
-  background-size: cover;
-  background-position: bottom center;
-  background-repeat: no-repeat;
+  .ready-freddy & {
+    background-image: url(vector-landscape.png);
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+  }
 
   @include mobile-only {
     background-size: $desktop-content-width * 2;
