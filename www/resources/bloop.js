@@ -105,13 +105,15 @@ window.addEventListener('load', () => {
   }
 
   function goTo(index) {
+    degrees = degrees + (index > savedIndex ? 120 : index < savedIndex ? -120 : 0)
     savedIndex = index;
     items.forEach((element, itemIndex) => {
+      var direction = itemIndex > savedIndex ? 1 : itemIndex < savedIndex ? -1 : 0;
       var directory = Array.from(document.querySelectorAll('ul.directory li'));
       directory[itemIndex].setAttribute('class', savedIndex === itemIndex ? 'active' : '');
-      element.style.opacity = savedIndex === itemIndex  ? 1 : 0.15;
-      element.style.transform = 'translateX(-' + savedIndex * 100 + '%)';
-      gear.style.transform = 'rotate(' + savedIndex * 180 + 'deg)';
+      element.style.opacity = savedIndex === itemIndex  ? 1 : 0;
+      element.style.transform = 'translateX(' + (direction * 33) + '%)';
+      gear.style.transform = 'rotate(' + degrees + 'deg)';
     });
   }
 
@@ -128,6 +130,7 @@ window.addEventListener('load', () => {
   var vessel = portfolio.querySelector('ul.examples');
   var items = vessel.querySelectorAll('li');
   var gear = document.querySelector('section.portfolio img');
+  var degrees = 0;
   var directory = makeDirectory(portfolio, items);
   var startX = 0;
 
@@ -140,9 +143,8 @@ window.addEventListener('load', () => {
   vessel.addEventListener('touchstart', swipeHandler, { passive: true });
   vessel.addEventListener('touchend', swipeHandler, { passive: true });
   vessel.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
-  vessel.style.overflow = 'hidden';
 
-  setTimeout(() => runCarousel(true), 5000); // Delayed until the happy cloud stops fidgeting.
   goTo(0); // Tee up directory highlight for first item.
+  runCarousel(true);
 
 })();

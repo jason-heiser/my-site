@@ -15,7 +15,7 @@ $light-back: white;
 $dark-back: rgb(30, 32, 36);
 $light-speed: 333ms;
 $header-stripe: 5px;
-$portfolio-transition: 1s;
+$portfolio-transition: 750ms;
 $bubble-target: 20px;
 $bubble-cushion: 5px;
 $fixed-column-width: 150px;
@@ -311,7 +311,7 @@ main {
         height: auto;
         margin-bottom: 8px;
         transform-origin: center;
-        transition: transform $portfolio-transition + 500ms;
+        transition: transform $portfolio-transition + 250ms;
         @include mobile-only {
           display: none;
         }
@@ -359,7 +359,7 @@ main {
             margin: 0;
           }
           a {
-            font-size: 16px;
+            font-size: 18px;
             color: $orange;
             width: $fixed-column-width;
             display: flex;
@@ -449,8 +449,8 @@ main {
 
         p {
           margin: 0;
-          font-size: 20px;
-          line-height: 30px;
+          font-size: 22px;
+          line-height: 33px;
           font-weight: 300;
 
           @include mobile-text;
@@ -534,21 +534,38 @@ main {
     &.portfolio {
 
       ul.examples {
+        width: 100%;
         list-style-type: none;
         padding: 0;
         margin: 0;
+        margin-bottom: 0;
         white-space: nowrap;
         overflow: auto;
         align-items: stretch;
         align-content: center;
+        position: relative;
+        .ready-freddy & {
+          padding-top: 20%;
+          @include mobile-only {
+            padding-top: 30%;
+          }
+        }
 
         li {
-          transition: transform $portfolio-transition, opacity $portfolio-transition * 0.8;
-          transition-timing-function: ease-in-out;
-          transition-delay: 150ms;
+          .ready-freddy & {
+            top: 0;
+            position: absolute;
+            transition: transform $portfolio-transition, opacity $portfolio-transition * 0.8;
+            transition-timing-function: ease-in-out;
+          }
+          & + li {
+            margin-top: 30px;
+            .ready-freddy & {
+              margin-top: 0;
+            }
+          }
           vertical-align: middle;
           white-space: normal;
-          display: inline-block;
           @include jumbotron;
           @include mobile-text;
           a.icon {
