@@ -7,7 +7,7 @@
       #right-wink {
         animation-delay: 2s;
         animation-duration: 8s;
-        animation-iteration-count: 1;
+        animation-iteration-count: infinite;
       }
 
       g#cloud {
