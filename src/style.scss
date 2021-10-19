@@ -540,7 +540,6 @@ main {
         margin: 0;
         margin-bottom: 0;
         white-space: nowrap;
-        overflow: auto;
         align-items: stretch;
         align-content: center;
         position: relative;
@@ -548,6 +547,7 @@ main {
           padding-top: 20%;
           @include mobile-only {
             padding-top: 30%;
+            overflow: hidden;
           }
         }
 
@@ -563,6 +563,19 @@ main {
             .ready-freddy & {
               margin-top: 0;
             }
+          }
+          &.inactive {
+            pointer-events: none;
+            opacity: 0;
+          }
+          &.active {
+            opacity: 1;
+          }
+          &.before {
+            transform: translateX(-33%);
+          }
+          &.after {
+            transform: translateX(33%);
           }
           vertical-align: middle;
           white-space: normal;

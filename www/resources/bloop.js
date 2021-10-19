@@ -75,7 +75,6 @@ window.addEventListener('load', () => {
       var entry = document.createElement('li');
       directory.appendChild(entry);
       entry.addEventListener('click', () => goTo(i));
-      entry.setAttribute('role', 'button');
     });
     return directory;
   }
@@ -108,11 +107,10 @@ window.addEventListener('load', () => {
     degrees = degrees + (index > savedIndex ? 120 : index < savedIndex ? -120 : 0)
     savedIndex = index;
     items.forEach((element, itemIndex) => {
-      var direction = itemIndex > savedIndex ? 1 : itemIndex < savedIndex ? -1 : 0;
+      var classNames = savedIndex > itemIndex ? 'inactive before' : savedIndex < itemIndex ? 'inactive after' : 'active';
       var directory = Array.from(document.querySelectorAll('ul.directory li'));
-      directory[itemIndex].setAttribute('class', savedIndex === itemIndex ? 'active' : '');
-      element.style.opacity = savedIndex === itemIndex  ? 1 : 0;
-      element.style.transform = 'translateX(' + (direction * 33) + '%)';
+      directory[itemIndex].setAttribute('class', classNames);
+      element.setAttribute('class', classNames);
       gear.style.transform = 'rotate(' + degrees + 'deg)';
     });
   }
