@@ -54,7 +54,7 @@ window.addEventListener('load', () => {
 
 (() => {
 
-  var plauditClass = 'plaudit-toggle';
+  var plauditClass = 'plaudit-toggle-off';
 
   if (localStorage.getItem(plauditClass) === 'yes') {
     localStorage.setItem(plauditClass, 'no');
