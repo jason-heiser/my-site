@@ -212,6 +212,9 @@ body {
         &.linked-in a:before {
           background-image: url(linked-in.svg);
         }
+        &.github a:before {
+          background-image: url(github.svg);
+        }
       }
     }
   }
