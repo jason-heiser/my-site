@@ -200,7 +200,7 @@ body {
           position: absolute;
           left: 0;
           @include mobile-only {
-            position: static;
+            display: none;
           }
           a:before {
             background-image: url(home.svg);
