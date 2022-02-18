@@ -2,11 +2,11 @@
   <defs>
     <style>
       path#balloon {
-        fill: #00a0da;
+        fill: #02b6f7;
       }
       path#heart-right,
       path#heart-left {
-        fill: #ef4200;
+        fill: #fe6529;
         animation-direction: alternate;
         animation-duration: 1s;
         animation-iteration-count: infinite;

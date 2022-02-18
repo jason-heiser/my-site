@@ -8,7 +8,7 @@
 /*  \$$$$$$  |$$ |  $$ |  */
 /*   \______/ \__|  \__|  */
 /*                        */
-/*   Jason Heiser, 2019   */
+/*   Jason Heiser, 2022   */
 
 if (window.location.hostname === 'jason.heiser.org') {
   var _gaq = _gaq || [];
@@ -24,46 +24,57 @@ if (window.location.hostname === 'jason.heiser.org') {
 
 window.addEventListener('load', () => {
   document.body.classList.add('ready-freddy');
-  document.querySelector('header img').setAttribute('src', 'resources/self-portrait.png');
-});
 
-(() => {
-
-  var lightClass = 'light-switch';
-
-  document.querySelector('.theme a').addEventListener('click', () => {
-    lightSwitch();
-    saveSwitch();
-  });
-
-  function lightSwitch() {
-    document.body.classList.toggle(lightClass);
-  }
-
-  function saveSwitch() {
-    if (localStorage.getItem(lightClass) === 'yes') {
-      localStorage.setItem(lightClass, 'no');
-    } else {
-      localStorage.setItem(lightClass, 'yes');
-    }
-  }
-
-  localStorage.getItem(lightClass) === 'yes' && lightSwitch();
+  var objects = Array.from(document.querySelectorAll('object'));
+  var cluster = (selector) => objects.map(object => Array.from(object.contentDocument.querySelectorAll(selector))).flat();
   
-})();
+  var twinkleInterval = 0;
+  var sparkleInterval = 0;
 
-(() => {
-
-  var plauditClass = 'plaudit-toggle';
-
-  if (localStorage.getItem(plauditClass) === 'yes') {
-    localStorage.setItem(plauditClass, 'no');
-    document.body.classList.add(plauditClass);
-  } else {
-    localStorage.setItem(plauditClass, 'yes');
+  var doTwinkle = (speed) => {
+    var stars = cluster('.circular-star');
+    clearInterval(twinkleInterval);
+    twinkleInterval = setInterval(() => {
+      var random = Math.floor(Math.random() * stars.length);
+      var star = stars[random];
+      star.style.transition = 'opacity 200ms';
+      star.style.opacity = 0;
+      setTimeout(() => star.style.opacity = 1, 500);
+    }, speed);
   }
 
-})();
+  var transform = (element, total, i) => { 
+    
+    var scale = 1 - (i > (total / 2) ? (total - 1) - i : i) * 0.1;
+    var rotation = element.style.transform.match(/rotate\(([0-9]+)deg\)/);
+    var offset = element.classList.contains('.crooked-star') ? 90 : 45;
+    var degrees = ((rotation !== null ? parseInt(rotation[1], 10) : 0) + offset) % 360;
+    var transform = 'rotate(' + degrees + 'deg) scale(' + scale + ')';
+    element.style.transformOrigin = 'center';
+    element.style.transformBox = 'fill-box';
+    element.style.transform = transform;
+  }
+
+  var doSparkle = (speed) => {
+    var randomizer = () => Math.ceil(Math.random() * 10) > 5 ? 1 : -1;
+    var stars = cluster('.straight-star, .crooked-star').sort(randomizer);
+    let counter = 0;
+    clearInterval(sparkleInterval);
+    sparkleInterval = setInterval(() => {
+      var index = counter++ % stars.length;
+      var rotations = 10;
+      var star = stars[index];
+      for (i = 0; rotations > i; i++) {
+        var closure = (c) => () => transform(star, rotations, c);
+        setTimeout(closure(i), i * 100);
+      }
+    }, speed);
+  }
+
+  doTwinkle(80);
+  doSparkle(800);
+
+});
 
 (() => {
 
@@ -79,22 +90,12 @@ window.addEventListener('load', () => {
     return directory;
   }
 
-  function swipeHandler(event) {
-    runCarousel(false);
-    if (event.type === 'touchstart') {
-      startX = event.touches[0].clientX;
-    } else {
-      var endX = event.changedTouches[0].clientX;
-      var newIndex = fenceIndex(savedIndex + (startX !== endX ? startX < endX ? -1 : 1 : 0));
-      goTo(newIndex);
-    }
-  }
-
   function keyHandler(event) {
-    runCarousel(false);
     if (event.key === 'ArrowLeft') {
+      runCarousel(true);
       goTo(fenceIndex(savedIndex - 1));
      } else if (event.key === 'ArrowRight') {
+      runCarousel(true);
       goTo(fenceIndex(savedIndex + 1));
     }
   }
@@ -116,13 +117,13 @@ window.addEventListener('load', () => {
   }
 
   function runCarousel(yes) {
-    clearInterval(interval);
+    clearInterval(carouselInterval);
     if (yes) {
-      interval = setInterval(() => goTo(savedIndex + 1 > items.length - 1 ? 0 : savedIndex + 1), 6000);
+      carouselInterval = setInterval(() => goTo(savedIndex + 1 > items.length - 1 ? 0 : savedIndex + 1), 5000);
     }
   }
 
-  var interval = 0;
+  var carouselInterval = 0;
   var savedIndex = 0;
   var portfolio = document.querySelector('section.portfolio');
   var vessel = portfolio.querySelector('ul.examples');
@@ -130,7 +131,6 @@ window.addEventListener('load', () => {
   var gear = document.querySelector('section.portfolio img');
   var degrees = 0;
   var directory = makeDirectory(portfolio, items);
-  var startX = 0;
 
   [directory, vessel].forEach(element => {
     ['mouseover'].forEach(event => element.addEventListener(event, () => runCarousel(false)));
@@ -138,11 +138,8 @@ window.addEventListener('load', () => {
   });
 
   window.addEventListener('keyup', keyHandler);
-  vessel.addEventListener('touchstart', swipeHandler, { passive: true });
-  vessel.addEventListener('touchend', swipeHandler, { passive: true });
-  vessel.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
 
-  goTo(0); // Tee up directory highlight for first item.
+  goTo(1); // Tee up directory highlight for first item.
   runCarousel(true);
 
 })();

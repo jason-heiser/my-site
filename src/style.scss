@@ -6,169 +6,236 @@
   Bold: Bold
 */
 
-$orange: #ef4200;
-$blue: #00a0da;
+$orange: #fe6529;
+$blue: #02b6f7;
+$white: #e3e0db;
+$graphite: #212526;
 $spacing: 25px;
-$light-text: #666;
-$dark-text: rgba(255, 255, 255, 0.85);
-$light-back: white;
-$dark-back: rgb(30, 32, 36);
-$light-speed: 333ms;
-$header-stripe: 5px;
 $portfolio-transition: 750ms;
-$bubble-target: 20px;
+$bubble-target: 25px;
 $bubble-cushion: 5px;
-$fixed-column-width: 150px;
-$desktop-content-width: 550px;
-$mobile-icon: 10.5vw;
+$fixed-column-width: 220px;
+$desktop-content-width: 800px;
+$footer-height: 100px;
+$header-height: 36px;
+$mobile-icon: 14vw;
+
+@mixin difference-blending {
+  mix-blend-mode: difference;
+}
+
+@mixin color-transition {
+  transition: color 200ms;
+}
 
 @mixin mobile-only {
-  @media only screen and (max-width: $desktop-content-width + ($spacing * 2)) { @content; }
+  @media only screen and (max-width: #{ $desktop-content-width + ($spacing * 2) }) { @content; }
 }
 
 @mixin mobile-text {
   @include mobile-only {
     font-weight: 300;
-    font-size: 6.75vw;
-    line-height: calc(6.75vw * 1.25);
+    font-size: 8vw;
+    line-height: calc(8vw * 1.25);
+    text-align: center;
+  }
+}
+
+@mixin text-hyperlink($color: $white) {
+  color: $color;
+  text-decoration: none;
+  &:hover, &:focus {
+    text-decoration: underline;
   }
 }
 
 @mixin jumbotron {
-  font-size: 30px;
-  line-height: 38px;
+  font-size: 44px;
+  line-height: 54px;
   font-weight: 200;
+}
+
+html, body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+* {
+  user-select: none;
 }
 
 body {
   font-family: 'Yanone Kaffeesatz', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: $orange;
+  color: $white;
+  background-color: black;
   &:before {
     content: '';
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    height: $header-stripe;
-    background-color: $orange;
-    z-index: 2;
+    bottom: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 100) 40%, rgba(200, 200, 200, 0.5) 120%), url(sandpaper.png);
+    background-blend-mode: color-burn;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &:after {
+    content: '';
+    background-image: url('data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAASCAMAAAC3taQAAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMS1jMDAwIDc5LmVkYTJiM2ZhYywgMjAyMS8xMS8xNy0xNzoyMzoxOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIzLjEgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NkY2OEREOTQ4ODdGMTFFQzkwNjVDRTZDRURBNDc4MEMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NkY2OEREOTU4ODdGMTFFQzkwNjVDRTZDRURBNDc4MEMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2RjY4REQ5Mjg4N0YxMUVDOTA2NUNFNkNFREE0NzgwQyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2RjY4REQ5Mzg4N0YxMUVDOTA2NUNFNkNFREE0NzgwQyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqQDXtUAAAAJUExURQAAAP///////3N4pWMAAAADdFJOU///ANfKDUEAAABASURBVHjalM9BCgAgCETR79z/0JmWJC0iQeFtRkWyVZJwEfWWbTl9kCGTJIjuslOkIqNUMU1tw7X94+rz2yHAAGkXANbsMBu+AAAAAElFTkSuQmCC');
+    image-rendering: pixelated;
+    z-index: 100;
+    font-size: 10vw;
+    font-family: 'sans-serif';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: $blue;
+    background-color: $graphite;
+    background-blend-mode: difference;
+    position: fixed;
+    background-position: center;
+    background-size: 150px;
+    background-repeat: no-repeat;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    transition: opacity 1s;
+    transition-delay: 1s;
+  }
+  &.ready-freddy:after {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  & > header {
+    position: relative;
+    background-image: url(sandpaper-high-rez.png);
+    background-color: $graphite;
+    background-position: center;
+    background-size: cover;
+    width: $desktop-content-width;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: $header-height;
+    overflow: hidden;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 0 $spacing;
+    box-sizing: border-box;
+    @include mobile-only {
+      width: auto;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      height: auto;
+      padding: calc($spacing / 2) 0;
+    }
+    &:before {
+      content: '';
+      background-color: $orange;
+      @include difference-blending;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+    }
+    ul {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      padding-top: 3px;
+      list-style-type: none;
+      text-align: center;
+      display: flex;
+      justify-content: flex-end;
+      @include mobile-only {
+        justify-content: space-evenly;
+      }
+      li {
+        $header-link-desktop-size: 22px;
+        $header-link-mobile-size: 28px;
+        display: inline-block;
+        & + li {
+          margin-left: $spacing;
+          @include mobile-only {
+            margin-left: 0;
+          }
+        }
+        a {
+          font-size: $header-link-desktop-size;
+          @include mobile-only {
+            font-size: $header-link-mobile-size;
+          }
+          font-weight: 500;
+          display: flex;
+          align-items: flex-start;
+          @include text-hyperlink($graphite);
+  
+          &:before {
+            content: '';
+            display: inline-block;
+            width: $header-link-desktop-size;
+            height: $header-link-desktop-size;
+            @include mobile-only {
+              width: $header-link-mobile-size;
+              height: $header-link-mobile-size;
+            }
+            margin-right: 5px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 130%;
+            transform: translateY(-3px);
+          }
+        }
+        &.home {
+          position: absolute;
+          left: 0;
+          @include mobile-only {
+            position: static;
+          }
+          a:before {
+            background-image: url(home.svg);
+          }
+        }
+        &.facebook a:before {
+          background-image: url(facebook.svg);
+        }
+        &.linked-in a:before {
+          background-image: url(linked-in.svg);
+        }
+      }
+    }
   }
 }
 
 main {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: $spacing * 2;
-  padding-bottom: $spacing * 4;
+  padding-top: $spacing * 3;
+  padding-bottom: $spacing * 3;
   box-sizing: border-box;
-  min-height: calc(100vh - 95px);
-
-  .ready-freddy & {
-    background-image: url(vector-landscape.png);
-    background-size: cover;
-    background-position: bottom center;
-    background-repeat: no-repeat;
-  }
+  min-height: calc(100vh - #{ $header-height + $footer-height });
 
   @include mobile-only {
-    background-size: $desktop-content-width * 2;
-  }
-
-   /* BEGIN: Light Switching */
-   .ready-freddy & {
-     transition: background-color $light-speed, color $light-speed;
-    }
-   background-color: $light-back;
-   color: $light-text;
- 
-   .light-switch & {
-     background-color: $dark-back;
-     color: $dark-text;
-   }
- 
-   @media (prefers-color-scheme: dark) {
-     background-color: $dark-back;
-     color: $dark-text;
-     .light-switch & {
-       background-color: $light-back;
-       color: $light-text;
-     }
-   }
- 
-   @media (prefers-color-scheme: light) {
-     background-color: $light-back;
-     color: $light-text;
-     .light-switch & {
-       background-color: $dark-back;
-       color: $dark-text;
-     }
-   }
- 
-   .light-mode & {
-     background-color: $light-back;
-     color: $light-text;
-   }
- 
-   .dark-mode & {
-     background-color: $dark-back;
-     color: $dark-text;
-   }
-   /* END: Light Switching */
-
-  a.bento {
-    position: absolute;
-    top: 10px + $header-stripe;
-    right: 10px;
-    outline: none;
-    display: none;
-    width: $mobile-icon;
-    height: $mobile-icon;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-
-    &.show {
-      background-image: url('hamburger.svg');
-      @include mobile-only {
-        display: block;
-      }
-      body:target & {
-        display: none;
-        @include mobile-only {
-          & + a.hide {
-            display: block;
-          }
-        }
-      }
-    }
-    &.hide{
-      background-image: url('close-x.svg');
-    }
+    min-height: auto;
+    padding-top: $spacing;
+    padding-bottom: $spacing;
   }
 
   a {
-    .ready-freddy & { transition: color $light-speed }
+    @include color-transition;
     text-decoration: none;
-    color: $light-text;
- 
-    .light-switch & { color: $dark-text }
-  
-    @media (prefers-color-scheme: dark) {
-      color: $dark-text;
-      .light-switch & { color: $light-text }
-    }
-  
-    @media (prefers-color-scheme: light) {
-      color: $light-text;
-      .light-switch & { color: $dark-text }
-    }
-  
-    .light-mode & { color: $light-text }
-    .dark-mode & { color: $dark-text }
+    color: $white;
 
     &.trans:hover, &.trans:active {
       color: $orange;
@@ -188,104 +255,133 @@ main {
   }
 
   header, section, hr {
+    @include difference-blending;
+    z-index: 1;
     width: $desktop-content-width;
     margin-left: auto;
     margin-right: auto;
     @include mobile-only {
-      width: calc(100vw - #{ $spacing * 2.5 });
+      width: calc(100vw - #{ $spacing * 3 });
     }
   }
 
   header {
 
-    white-space: nowrap;
-    
+    position: relative;
+
+    object.stars {
+      position: absolute;
+      width: 100%;
+      transform-origin: center;
+      transform: scale(1.75);
+      @include mobile-only {
+        display: none;
+      }
+    }
+
     & > * {
       vertical-align: middle;
       display: inline-block;
+      @include mobile-only {
+        display: block;
+        text-align: center;
+      }
     }
 
-    img {
+    object.logo {
       width: $fixed-column-width;
       margin-right: $spacing;
       height: auto;
       @include mobile-only {
-        margin-right: 4vw;
-        width: 22vw;
+        margin: 0 auto;
+        width: 85%;
       }
     }
 
     h1 {
       position: relative;
-      font-size: 56px;
+      font-size: 90px;
       color: $orange;
       margin: 0;
 
       @include mobile-only {
-        font-size: 10.5vw;
-      }
-
-      &:after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        width: 70px;
-        height: 70px;
-        background-image: url('happy-cloud.svg');
-        background-position: center;
-        background-repeat: no-repeat;
-        @include mobile-only {
-          display: none;
-        }
+        font-size: 20vw;
+        text-align: center;
       }
     }
 
     h2 {
       text-transform: uppercase;
-      font-weight: 300;
-      margin: 0;
-      line-height: 60%;
-      font-size: 28px;
-      letter-spacing: 0.2em;
-      @include mobile-only {
-        font-size: 6.5vw;
-        letter-spacing: inherit;
-      }
-    }
-
-    h3 {
+      font-weight: 400;
       color: $blue;
-      font-weight: normal;
-      font-size: 27px;
-      margin: 20px 0 0 0;
+      margin: 0;
+      line-height: 50%;
+      font-size: 28px;
+      letter-spacing: 0.45em;
+      sup {
+        color: $orange;
+        vertical-align: middle;
+      }
       @include mobile-only {
-        margin-top: 2vw;
-        font-size: 4.5vw;
+        font-size: 8.5vw;
+        letter-spacing: inherit;
       }
     }
   }
 
   header + section {
     margin-top: 15px;
+    @include mobile-only {
+      margin-top: $spacing;
+    }
   }
 
   section {
     display: flex;
-    // align-items: center;
     position: relative;
 
     @include mobile-only {
-      display: block;
+      flex-direction: column;
+      flex-direction: column-reverse;
     }
 
-    h4 {
+    aside {
+      white-space: nowrap;
+      transition: transform 200ms, opacity 200ms;
+      opacity: 0;
+      transform: translateY(50%);
+      display: block;
+      font-size: 50%;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: normal;
+      color: $blue;
+      margin-top: calc($spacing / 2);
+      @include mobile-only {
+        display: none;
+      }
+      &:before {
+        color: $orange;
+        content: '⬅';
+      }
+      &:after {
+        color: $orange;
+        content: '⮕';
+      }
+    }
+    &:hover aside {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+
+    h3 {
       text-align: center;
       flex-basis: $fixed-column-width;
       flex-grow: 0;
       flex-shrink: 0;
       margin: 0;
       margin-right: $spacing;
-      font-size: 18px;
+      font-size: 28px;
       font-weight: normal;
       text-transform: uppercase;
       letter-spacing: 0.25em;
@@ -296,6 +392,7 @@ main {
       }
 
       @include mobile-only {
+        margin-bottom: 2vw;
         text-align: left;
         transform: translateY(-6px);
         span {
@@ -307,9 +404,9 @@ main {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 60px;
+        width: 75px;
         height: auto;
-        margin-bottom: 8px;
+        margin-bottom: 18px;
         transform-origin: center;
         transition: transform $portfolio-transition + 250ms;
         @include mobile-only {
@@ -324,34 +421,29 @@ main {
         list-style-type: none;
         padding: 0;
         margin: 0;
+        margin-top: 8px;
         margin-right: $spacing;
 
         @include mobile-only {
+          margin-top: $spacing;
           z-index: 1;
           display: flex;
-          flex-direction: row;
+          flex-direction: row-reverse;
           flex-wrap: wrap;
           align-items: center;
           justify-content: space-evenly;
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          margin-right: 0;
-          pointer-events: none;
-          transform: translateY(10px);
-          .ready-freddy & { transition: transform $light-speed, opacity $light-speed };
-          opacity: 0;
+          margin-left: -$spacing;
+          margin-right: -$spacing;
           text-align: center;
-          body:target & {
-            opacity: 1;
-            transform: translateY(0px);
-            pointer-events: all;
-          }
         }
         
         li {
+          & + li {
+            margin-top: 12px;
+            @include mobile-only {
+              margin-top: 0;
+            }
+          }
           @include mobile-only {
             display: inline-block;
             flex-basis: 33%;
@@ -359,17 +451,16 @@ main {
             margin: 0;
           }
           a {
-            font-size: 18px;
-            color: $orange;
+            font-size: 28px;
             width: $fixed-column-width;
             display: flex;
             align-items: center;
-            text-decoration: none;
-            cursor: pointer;
-
+            @include text-hyperlink($orange);
+            @include color-transition;
             @include mobile-only {
+              white-space: nowrap;
               display: block;
-              font-size: 4.25vw;
+              font-size: 6vw;
               width: auto;
               text-align: center;
             }
@@ -377,10 +468,11 @@ main {
             &:before {
               content: '';
               display: inline-block;
-              width: 32px;
-              height: 32px;
+              width: 36px;
+              height: 36px;
               margin-right: 8px;
               background-repeat: no-repeat;
+              background-position: center;
               @include mobile-only {
                 display: block;
                 margin: 0 auto;
@@ -390,8 +482,13 @@ main {
               }
             }
           }
-          &.geo a:before {
-            background-image: url('geo-pin.svg');
+          &.geo {
+            @include mobile-only {
+              display: none;
+            }
+            a:before {
+              background-image: url('geo-pin.svg');
+            }
           }
           
           &.email a:before {
@@ -406,52 +503,15 @@ main {
             background-image: url('document.svg');
           }
 
-          &.linked-in a:before {
-            background-image: url('linked-in.svg');
-          }
-
-          &.theme {
-            
-            a {
-              cursor: pointer;
-            }
-
-            a:before { background-image: url('sun.svg'); }
-
-            .light-switch & {
-              a:before { background-image: url('moon.svg'); }
-            }
-        
-            @media (prefers-color-scheme: light) {
-              a:before { background-image: url('sun.svg'); } 
-              .light-switch & {
-                a:before { background-image: url('moon.svg'); }
-              }
-            }
-            @media (prefers-color-scheme: dark) {
-              a:before { background-image: url('moon.svg'); }
-              .light-switch & {
-                a:before { background-image: url('sun.svg'); }
-              }
-            }
-          }
         }
       }
       article {
 
-        .ready-freddy & { transition: opacity $light-speed }
-
-        @include mobile-only {
-          body:target & {
-            opacity: 0;
-          }
-        }
-
         p {
           margin: 0;
-          font-size: 22px;
-          line-height: 33px;
-          font-weight: 300;
+          font-size: 32px;
+          line-height: 42px;
+          font-weight: 200;
 
           @include mobile-text;
 
@@ -462,24 +522,19 @@ main {
             }
           }
 
-          &:nth-of-type(2) {
-            @include mobile-only {
-              display: none;
-            }
-          }
           & + p {
-            margin-top: 15px;
+            margin-top: $spacing;
           }
         }
       }
     }
 
     &.plaudits {
-      h5 {
+      h4 {
         color: $blue;
         margin: 0;
         margin-top: $spacing;
-        font-size: 20px;
+        font-size: 28px;
         font-weight: normal;
         text-align: right;
         &:before {
@@ -492,46 +547,50 @@ main {
       p {
         margin: 0;
         @include jumbotron;
-        @include mobile-text;
         &:before {
           font-weight: normal;
           position: absolute;
-          margin-left: -12px;
+          transform: translateX(-125%) translateY(25%);
+          font-size: 150%;
           content: '“';
         }
         &:after {
           font-weight: normal;
           position: absolute;
-          margin-left: 2px;
+          font-size: 150%;
+          transform: translateX(25%) translateY(25%);
           content: '”';
         }
         &:before, &:after {
           color: $blue;
         }
       }
-      article {
 
-        &:nth-of-type(1) { display: block }
-        &:nth-of-type(2) { display: none }
-
-        body.plaudit-toggle &:nth-of-type(1) { display: none }
-        body.plaudit-toggle &:nth-of-type(2) { display: block }
-
-        @include mobile-only {
-          &:nth-of-type(1) { display: none }
-          &:nth-of-type(2) { display: block }
-          body.plaudit-toggle &:nth-of-type(1) { display: block }
-          body.plaudit-toggle &:nth-of-type(2) { display: none }
-        }
-
-        a {
-          display: flex;
-          flex-direction: column-reverse;
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {
+          padding-bottom: $spacing;
+          & + li {
+            padding-top: $spacing;
+            border-top: 0.5px solid $orange;
+            @include difference-blending;
+          }
+          &:nth-last-of-type(1) {
+            padding-bottom: 0;
+          }
+          a {
+            display: flex;
+            flex-direction: column-reverse;
+          }
         }
       }
     }
 
     &.portfolio {
+
+      padding-bottom: 45px;
 
       ul.examples {
         width: 100%;
@@ -545,10 +604,6 @@ main {
         position: relative;
         .ready-freddy & {
           padding-top: 20%;
-          @include mobile-only {
-            padding-top: 30%;
-            overflow: hidden;
-          }
         }
 
         li {
@@ -572,22 +627,21 @@ main {
             opacity: 1;
           }
           &.before {
-            transform: translateX(-33%);
+            transform: translateX(-20%);
           }
           &.after {
-            transform: translateX(33%);
+            transform: translateX(20%);
           }
           vertical-align: middle;
           white-space: normal;
           @include jumbotron;
-          @include mobile-text;
           a.icon {
             display: block;
             &:after {
-              width: 32px;
-              height: 32px;
+              width: 44px;
+              height: 44px;
               margin-left: 8px;
-              margin-bottom: 3px;
+              margin-bottom: 10px;
               @include mobile-only {
                 margin-left: 1vw;
                 width: 8.25vw;
@@ -608,7 +662,6 @@ main {
         bottom: 0;
         left: $fixed-column-width + $spacing;
         right: 0;
-        transform: translateY(225%);
         @include mobile-only {
           left: 0;
         }
@@ -625,10 +678,10 @@ main {
             right: $bubble-cushion;
             left: $bubble-cushion;
             bottom: $bubble-cushion;
-            border-radius: ($bubble-target - ($bubble-cushion * 2)) / 2 ;
+            border-radius: calc(($bubble-target - ($bubble-cushion * 2)) / 2) ;
             background-color: $blue;
             transform-origin: center;
-            transition: background-color $portfolio-transition / 2, transform $portfolio-transition / 2;
+            transition: background-color calc($portfolio-transition / 3), transform calc($portfolio-transition / 2);
           }
           &.active:before {
             transform: scale(1.75);
@@ -640,58 +693,62 @@ main {
   }
 }
 
-main hr {
+hr {
   border-style: solid;
   border-width: 0.5px;
+  border-bottom: 0;
   border-color: $orange;
   margin-top: $spacing;
   margin-bottom: $spacing;
   @include mobile-only {
     width: calc(100vw - 1px);
+    margin-top: $spacing * 2;
+    margin-bottom: $spacing * 2;
+  }
+}
+
+hr,
+section.portfolio,
+section.plaudits {
+  @include mobile-only {
+    display: none;
   }
 }
 
 footer {
+  @include difference-blending;
   position: relative;
-  background-color: $orange;
-  background-image: url('upside-down.png'), url('john-hancock.png');
-  background-repeat: no-repeat;
-  background-position: center top, center 30px;
-  background-size: 710px 62px, 218px 53px;
   text-align: center;
-  padding: 25px 0 0 0;
-  box-sizing: border-box;
-  height: 90px;
-  color: $dark-back;
-  font-size: 14px;
-
-  &:before {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    left: 50%;
-    margin-left: -8px;
-    transform: rotate(45deg);
-    top: -8px;
-    .ready-freddy & { transition: background-color $light-speed }
-
-    background-color: $light-back;
-    .light-switch & {
-      background-color: $dark-back;
-    }
-
-    @media (prefers-color-scheme: light) {
-      background-color: $light-back;
-      .light-switch & {
-        background-color: $dark-back;
-      }
-    }
-    @media (prefers-color-scheme: dark) {
-      background-color: $dark-back;
-      .light-switch & {
-        background-color: $light-back;
+  font-size: 22px;
+  background-color: rgba($graphite, 0.25);
+  height: $footer-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 $spacing;
+  @include mobile-only {
+    font-size: 4.5vw;
+    line-height: 5.5vw;
+  }
+  p {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 25px;
+    color: $blue;
+    a {
+      font-size: 18px;
+      font-weight: 300;
+      color: $white;
+      text-decoration: none;
+      @include color-transition;
+      &:hover, &:focus {
+        color: $orange;
       }
     }
   }
+
 }
+
