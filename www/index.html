@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Jason Heiser | Web Design & Development</title>
+  <title>Jason Heiser | Web Design + Development</title>
   <link href="resources/style.css" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="author" content="Jason Heiser">
@@ -24,44 +24,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;300;400;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
-
-  <header>
-    <ul>
-      <li class="home">
-        <a href="/">
-          Home
-        </a>
-      <li class="github">
-        <a href="https://github.com/jason-heiser">
-          GitHub
-        </a>
-      <li class="linked-in">
-        <a href="https://www.linkedin.com/in/jasonheiser">
-          LinkedIn
-        </a>
-      <li class="facebook">
-        <a href="https://www.facebook.com/jasonheiser">
-          Facebook
-        </a>
-    </ul>
-  </header>
+<body id="ready-betty">
 
   <main>
 
     <header>
-      <object class="stars" data="resources/starfield.svg"></object>
+      <ul>
+        <li class="home desktop-only">
+          <a href="/">
+            Home
+          </a>
+        <li class="github">
+          <a href="https://github.com/jason-heiser">
+            GitHub
+          </a>
+        <li class="linked-in">
+          <a href="https://www.linkedin.com/in/jasonheiser">
+            LinkedIn
+          </a>
+        <li class="facebook">
+          <a href="https://www.facebook.com/jasonheiser">
+            Facebook
+          </a>
+      </ul>
+    </header>
+
+    <section class="masthead">
+      <object class="stars desktop-only" data="resources/starfield.svg"></object>
       <object class="logo" data="resources/jh-logo.svg"></object>
       <hgroup>
         <h1>Jason Heiser</h1>
         <h2>Web Design <sup>&</sup> Development</h2>
       </hgroup>
-    </header>
+    </section>
 
-    <section class="overview">
-      <h3 hidden>Informational Links</h3>
+    <section class="elevator-pitch">
       <ul>
-        <li class="geo">
+        <li class="geo desktop-only">
           <a href="https://goo.gl/maps/WEnSueDiEx39yvwm6">
             Twin Cities
           </a>
@@ -76,10 +75,14 @@
             (651) 335-7032
           </a>
 
+        <li class="pki desktop-only">
+          <a href="resources/public-key.txt">
+            Public Key
+          </a>
+
       </ul>
 
       <article>
-        <h5 hidden>About Jason</h5>
         <p>
           I have been making websites since 1997.
           Over the years I’ve picked up a wide range of skills on
@@ -99,54 +102,40 @@
     <hr>
 
     <section class="portfolio">
+
       <h3>
         <img src="resources/gear.svg" alt="Gear">
-        <span>Portfolio</span>
-        <aside>
-          arrow keys override carousel
-        </aside>
+        <em>Portfolio</em>
       </h3>
+
       <ul class="examples">
         <li>
-          Built a dynamic questionnaire framework in Angular and a JSON-based syntax to power questions.</a>
+          <a href="resources/smart-forms.png" target="_BLANK" class="icon magnify trans">
+            Built a dynamic questionnaire framework in Angular and a JSON-based syntax to power questions.</a>
 
         <li>
-          <a href="https://apps.apple.com/us/app/safe2eat/id1189308517" title="Safe2Eat" target="_BLANK" class="icon trans">
+          <a href="resources/animations.svg" target="_BLANK" class="icon magnify trans">
+            Designed logos using Adobe Illustrator, exported to SVG, then animated with CSS.</a>
+
+        <li>
+          <a href="resources/safe-2-eat.png" target="_BLANK" class="icon magnify trans">
             Built an Ionic-based mobile app for iOS with fun videos and interactive quizzes on food safety.</a>
 
         <li>
-          Captured webcam video with the MediaRecorder API, then POSTed to Amazon S3 with an upload policy.
+          <a href="resources/emcp-video-annotations.png" target="_BLANK" class="icon magnify trans">
+            Captured webcam video with the MediaRecorder API, then POSTed to Amazon S3 with an upload policy.</a>
 
         <li>
-          <a href="resources/control-panel.png" title="VTS Control Panel v2" target="_BLANK" class="icon trans">
-            Built a control panel SPA for managing web applications, app servers, and load balancers.</a>
+          <a href="resources/vts-control-panel.png" class="icon magnify trans">
+            Designed and built a control panel SPA for managing web applications, app servers, and load balancers.</a>
 
         <li>
-          Added custom CORS headers to a third-party API by setting up a reverse proxy with NGINX.
-
-        <li>
-          <a href="https://apps.apple.com/us/app/luthers-small-catechism/id1114077769" title="Luther’s Small Catechism" target="_BLANK" class="icon trans">
+          <a href="resources/luthers-small-catechism.png" target="_BLANK" class="icon magnify trans">
             Built an Ionic-based mobile app with an in-app purchase that unlocks exclusive content.</a>
 
         <li>
-          Ported a Vagrant app to Docker with containers for Node, PHP-FPM, MySQL, NGINX, and Memcached.
-
-        <li>
-          <a href="https://www.octanefitness.com/home/" title="Octane Fitness" target="_BLANK" class="icon trans">
-            Modified a shopping cart so buyers can apply for credit with Synchrony Bank without leaving the site.</a>
-
-        <li>
-          <a href="https://apps.apple.com/us/app/frolic-family/id1171248297" title="Frolic Family" target="_BLANK" class="icon trans">
-            Built a Cordova-based mobile app with push notification support using Firebase Cloud Messaging.</a>
-
-        <li>
-          Designed custom icons in Adobe Illustrator, exported them to SVG, and animated them with CSS.
-
-        <li>
-          Wrote a Bash script that Gulp-compiles SCSS+JS then deploys all changed files via rsync.
-
-        <li>
-          Built a Cordova-based mobile app that connects an iPad, a Honeywell Captuvo scanner, and a website.
+          <a href="resources/1517-pos.jpg" target="_BLANK" class="icon magnify trans">
+            Built a Cordova-based mobile app that connects an iPad, a Honeywell Captuvo scanner, and a website.</a>
 
       </ul>
 
@@ -157,39 +146,127 @@
     <section class="plaudits">
       <h3>
         <img src="resources/heart-balloon.svg" alt="Heart Balloon">
-        <span>Praise</span>
+        <em>Praise</em>
       </h3>
 
       <ul>
         <li>
-          <a href="https://torrch.com" target="_BLANK" class="trans">
+          <a href="https://geminiams.com/" target="_BLANK" class="trans">
             <h4>
-              Jeri Novalany,
-              Project Manager at Torrch
+              Jeri Novalany, Project Manager at Gemini
             </h4>
             <p>Jason is a hero who kills it on his projects with his consistently high-quality, low-drama coding.</p>
           </a>
         <li>
           <a href="http://www.magmonster.net" target="_BLANK" class="trans">
             <h4>
-              Drew Bombard,
-              MagMonster Apps
+              Drew Bombard, MagMonster Apps
             </h4>
-            <p>One of the most talented guys I’ve ever had the privilege to work with.</p>
+            <p>One of the most talented guys I’ve ever worked with.</p>
           </a>
         
       </ul>
     </section>
 
+    <hr>
+
+    <section class="skills">
+      <h3>
+        <img src="resources/skills.gif" alt="Get down">
+        <em>Skills</em>
+      </h3>
+      <article>
+        <ul>
+          <li class="level-5">JavaScript</li>
+          <li class="level-5">HTML5</li>
+          <li class="level-5">CSS</li>
+          <li class="level-5">Angular</li>
+          <li class="level-5">Sass</li>
+          <li class="level-5">RegExp</li>
+          <li class="level-5">Animation</li>
+          <li class="level-5">jQuery</li>
+          <li class="level-5">Photoshop</li>
+          <li class="level-4">WordPress</li>
+          <li class="level-4">DevOps</li>
+          <li class="level-4">SQL</li>
+          <li class="level-4">Shell Scripting</li>
+          <li class="level-4">SPAs</li>
+          <li class="level-4">RxJS</li>
+          <li class="level-4">PHP</li>
+          <li class="level-4">Node.js</li>
+          <li class="level-4">Docker</li>
+          <li class="level-4">Git</li>
+          <li class="level-4">Gulp</li>
+          <li class="level-4">NGINX</li>
+          <li class="level-4">ColdFusion</li>
+          <li class="level-4">Apache</li>
+          <li class="level-4">IIS</li>
+          <li class="level-3">SharePoint</li>
+          <li class="level-3">Ionic</li>
+          <li class="level-3">ScrollMagic</li>
+          <li class="level-3">Cordova</li>
+          <li class="level-3">Data Transformation</li>
+          <li class="level-3">AngularJS</li>
+          <li class="level-3">Redux</li>
+          <li class="level-2">Jenkins</li>
+          <li class="level-2">Java</li>
+          <li class="level-2">AWS</li>
+          <li class="level-2">Azure</li>
+          <li class="level-2">webpack</li>
+          <li class="level-2">.NET</li>
+          <li class="level-1">Shopify</li>
+          <li class="level-1">Python</li>
+          <li class="level-1">React</li>
+        </ul>
+      </article>
+    </section>
+
+    <footer>
+      <p>
+        Thanks to all the cool tech that helps make this site work
+      </p>
+      <ul>
+        <li>
+          <a href="https://www.digitalocean.com">
+            <img src="resources/digital-ocean.svg" alt="Digital Ocean">
+          </a>
+        </li>
+        <li>
+          <a href="https://www.nginx.com">
+            <img src="resources/nginx.svg" alt="NGINX">
+            </a>
+          </li>
+        <li>
+          <a href="https://letsencrypt.org">
+            <img src="resources/lets-encrypt.svg" alt="Let’s Encrypt">
+          </a>
+        </li>
+        <li>
+          <a href="https://nodejs.org/">
+            <img src="resources/node-js.svg" alt="Node.js">
+          </a>
+        </li>
+        <li>
+          <a href="https://sass-lang.com/">
+            <img src="resources/sass.svg" alt="Sass">
+          </a>
+        </li>
+        <li>
+          <a href="https://gulpjs.com/">
+            <img src="resources/gulp.svg" alt="Gulp">
+          </a>
+        </li>
+      </ul>
+    </footer>
+
   </main>
 
-  <footer>
-    <p>
-      <a href="mailto:jason@heiser.org?subject=Hello">
-        Jason Heiser
-      </a>
-      2022
-  </footer>
+  <aside>
+    <noscript>
+      JavaScript is disabled!
+      <a href="#ready-betty">Click Here</a>
+    </noscript>
+  </aside>
 
   <script src="resources/bloop.js"></script>
 
