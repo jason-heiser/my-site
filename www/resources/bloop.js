@@ -118,7 +118,7 @@ var runCarousel = (() => {
   }
 
   var runCarousel = (yes, event) => {
-    if (event?.toElement?.classList.contains('modal')) {
+    if (event?.toElement?.localName === 'aside') {
       return;
     }
     clearInterval(carouselInterval);
@@ -156,7 +156,9 @@ var runCarousel = (() => {
 
   var initModal = (link, event) => {
     event?.preventDefault();
-    var modalClass = 'modal';
+    var modalShowing = 'modal-showing';
+    var modalLoading = 'modal-loading';
+    var modalReadied = 'modal-readied';
     var modal = document.createElement('a');
     var instructions = document.createElement('span');
     instructions.innerText = 'Click anywhere to close';
@@ -165,7 +167,7 @@ var runCarousel = (() => {
                                          ['img', 'src', 'normal'] :
                                          ['object', 'data', 'difference'];
     var image = document.createElement(element);
-    image.addEventListener('load', () => document.body.classList.add(modalClass));
+    image.addEventListener('load', () => document.body.classList.add(modalShowing));
     image.setAttribute(attribute, link.href);
     image.style.mixBlendMode = blending;
     modal.classList.add('modal');
@@ -173,9 +175,10 @@ var runCarousel = (() => {
     modal.appendChild(caption);
     modal.appendChild(instructions);
     document.body.appendChild(modal);
+    document.body.classList.add(modalReadied, modalLoading);
     var kill = () => {
       window.removeEventListener('keyup', kill);
-      document.body.classList.remove(modalClass);
+      document.body.classList.remove(modalShowing, modalLoading);
       setTimeout(() => document.body.removeChild(modal), 1000);
       runCarousel(true);
     };

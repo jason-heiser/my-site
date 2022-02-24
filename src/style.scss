@@ -61,7 +61,7 @@ body {
   padding: 0;
   color: $text-color;
   background-color: black;
-  &.modal {
+  &.modal-showing {
     overflow: hidden;
   }
 }
@@ -185,7 +185,7 @@ main {
     right: 0;
     left: 0;
     bottom: 0;
-    background-image: radial-gradient(circle at 50% 85%,transparent 60%,rgba(0,0,0,.75) 150%), url(sandpaper.png);
+    background-image: radial-gradient(circle at 50% 85%, transparent 60%, rgba(0,0,0,.75) 150%), url(sandpaper.png);
     background-position: center;
     background-size: cover;
   }
@@ -274,8 +274,10 @@ main {
         font-weight: 400;
         color: $blue;
         margin: 0;
-        line-height: 50%;
-        font-size: 28px;
+        font-size: 24px;
+        letter-spacing: .45em;
+        transform: translateY(-10px);
+        font-size: 26px;
         letter-spacing: 0.45em;
         sup {
           color: $orange;
@@ -816,9 +818,8 @@ aside {
   background-position: center;
   background-repeat: no-repeat;
   background-size: $watch-icon-size;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAASCAQAAAAqYpy5AAAAQklEQVR42rXRMQoAMAgEwf3/pzdFCBwGbUK0sJjmVESshQibiH4nL3KTlhwHSSDnQDZEUkSodAfpaQ4/rPzhvM0rFzCrWLa6W9ebAAAAAElFTkSuQmCC');
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAASAgMAAAD9BbyhAAAACVBMVEX////j4NshJSY0cUD7AAAAAXRSTlMAQObYZgAAADZJREFUeAFjYA0NYGBgWzUBmRBbNYWBITI0lYEhNTISTDgAiSggsRJEhEaCCbASsGJ0A8CGAgDJ6BV3QwqwxwAAAABJRU5ErkJggg==');
   image-rendering: pixelated;
-  background-blend-mode: difference;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -832,10 +833,18 @@ aside {
   bottom: 0;
   transition: opacity 500ms;
   transition-delay: 500ms;
+  body.modal-readied & {
+    transition-delay: unset;
+    background-color: transparent;
+  }
   body.ready-freddy &,
   body:target & {
     opacity: 0;
     pointer-events: none;
+  }
+  body.modal-loading.ready-freddy & {
+    opacity: 1;
+    pointer-events: all;
   }
   noscript {
     font-size: 42px;
@@ -864,16 +873,17 @@ a.modal {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: radial-gradient(circle at 50%,transparent 60%,rgba(0,0,0,.75) 120%), url(sandpaper.png);
+  background-image: radial-gradient(circle at 50%, transparent 60%, rgba(0,0,0,.75) 120%), url(sandpaper.png);
   background-color: $slate;
   background-size: cover;
   cursor: pointer;
   pointer-events: none;
   opacity: 0;
   transition: opacity 500ms;
+  transition-delay: 500ms;
   color: $white;
   font-size: 28px;
-  body.modal & {
+  body.modal-showing & {
     opacity: 1;
     pointer-events: all;
   }
