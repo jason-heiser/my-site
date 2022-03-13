@@ -436,10 +436,42 @@ main {
             @include mobile-text;
           }
           a {
-            text-decoration: underline;
-            &:hover, &:active {
-              color: $orange;
+            text-decoration: none;
+            font-weight: 400;
+            color: $orange;
+            cursor: pointer;
+            &:before {
+              @include mobile-only {
+                display: none;
+              }
+              content: "";
+              opacity: 0;
+              display: block;
+              position: absolute;
+              background-size: 170px 125px;
+              width: 170px;
+              height: 125px;
+              background-image: url(psyche.png);
+              background-repeat: no-repeat;
+              pointer-events: none;
+              transform: translateY(-60%) translateX(-115%);
+              transition: opacity 200ms;
             }
+            &:hover {
+              text-decoration: underline;
+              &:before {
+                opacity: 1;
+              }
+            }
+            @include mobile-only {
+              font-weight: 300;
+              color: $white;
+              cursor: initial;
+              &:hover {
+                text-decoration: none;
+              }
+            }
+
           }
           & + p {
             margin-top: $general-spacing;
