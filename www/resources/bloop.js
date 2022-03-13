@@ -156,6 +156,7 @@ var runCarousel = (() => {
 
   var initModal = (link, event) => {
     event?.preventDefault();
+    var location = window.location.protocol + '//' + window.location.hostname + '/';
     var modalShowing = 'modal-showing';
     var modalLoading = 'modal-loading';
     var modalReadied = 'modal-readied';
@@ -167,8 +168,10 @@ var runCarousel = (() => {
                                          ['img', 'src', 'normal'] :
                                          ['object', 'data', 'difference'];
     var image = document.createElement(element);
+    var [filename, id] = link.href.match(/([^\/\.]+)\.[a-zA-Z]+$/);
     image.addEventListener('load', () => document.body.classList.add(modalShowing));
     image.setAttribute(attribute, link.href);
+    image.setAttribute('id', id);
     image.style.mixBlendMode = blending;
     modal.classList.add('modal');
     modal.appendChild(image);
@@ -176,7 +179,9 @@ var runCarousel = (() => {
     modal.appendChild(instructions);
     document.body.appendChild(modal);
     document.body.classList.add(modalReadied, modalLoading);
+    history.replaceState(null, '', location + '#' + id);
     var kill = () => {
+      history.replaceState(null, '', location);
       window.removeEventListener('keyup', kill);
       document.body.classList.remove(modalShowing, modalLoading);
       setTimeout(() => document.body.removeChild(modal), 1000);
