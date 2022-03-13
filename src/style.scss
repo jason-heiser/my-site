@@ -670,75 +670,71 @@ main {
     }
   
     &.skills {
-      article {
-        ul {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          justify-content: center;
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          text-align: center;
-          &:hover {
-            li {
-              opacity: 0.25;
-            }
-          }
-  
-          @mixin skill-magnifier($class, $size, $weight, $experience) {
-            &.#{ $class } {
-              font-size: $size;
-              font-weight: $weight;
-              &:after {
-                content: $experience;
-              }
-              &:hover {
-                transform: scale(calc(50px / $size));
-                &:after {
-                  opacity: 1;
-                }
-              }
-            }
-          }
-  
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        &:hover {
           li {
-            position: relative;
-            display: inline-block;
-            margin: 3px 5px;
-            transition: transform 200ms, opacity 200ms, color 200ms;
-            will-change: transform, opacity, color;
-            transform-origin: bottom center;
-            user-select: none;
-            &:hover {
-              opacity: 1;
-              z-index: 1;
-              text-shadow: 0px 0px 20px #444;
-            }
-            &:after {
-              font-weight: 200;
-              position: absolute;
-              display: block;
-              color: $white;
-              font-size: 50%;
-              white-space: nowrap;
-              pointer-events: none;
-              opacity: 0;
-              transition: opacity 200ms;
-            }
-            &:nth-child(3n+1) { color: $orange }
-            &:nth-child(3n+2) { color: $blue }
-            &:nth-child(3n+3) { color: $yellow }
-            @include skill-magnifier('level-1', 18px, 200, 'Little experience');
-            @include skill-magnifier('level-2', 24px, 200, 'Smattering of experience');
-            @include skill-magnifier('level-3', 30px, 300, 'Some experience');
-            @include skill-magnifier('level-4', 36px, 400, 'Lots of experience');
-            @include skill-magnifier('level-5', 42px, 700, 'Very deep experience');
+            opacity: 0.25;
           }
+        }
+
+        @mixin skill-magnifier($class, $size, $weight, $experience) {
+          &.#{ $class } {
+            font-size: $size;
+            font-weight: $weight;
+            &:after {
+              content: $experience;
+            }
+            &:hover {
+              transform: scale(calc(50px / $size));
+              &:after {
+                opacity: 1;
+              }
+            }
+          }
+        }
+
+        li {
+          position: relative;
+          display: inline-block;
+          margin: 3px 5px;
+          transition: transform 200ms, opacity 200ms, color 200ms;
+          transform-origin: bottom center;
+          user-select: none;
+          &:hover {
+            opacity: 1;
+            z-index: 1;
+            text-shadow: 0px 0px 20px #444;
+          }
+          &:after {
+            font-weight: 200;
+            position: absolute;
+            display: block;
+            color: $white;
+            font-size: 50%;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 200ms;
+          }
+          &:nth-child(3n+1) { color: $orange }
+          &:nth-child(3n+2) { color: $blue }
+          &:nth-child(3n+3) { color: $yellow }
+          @include skill-magnifier('level-1', 18px, 200, 'Smidge of experience');
+          @include skill-magnifier('level-2', 24px, 200, 'Smattering of experience');
+          @include skill-magnifier('level-3', 30px, 300, 'Some experience');
+          @include skill-magnifier('level-4', 36px, 400, 'Lots of experience');
+          @include skill-magnifier('level-5', 42px, 700, 'Very deep experience');
         }
       }
     }
-
   }
 }
 
@@ -798,7 +794,11 @@ footer {
       }
     }
     img {
-      height: 28px;
+      height: 24px;
+      &[src='resources/digital-ocean.svg'] { height: 22px }
+      &[src='resources/lets-encrypt.svg'] { height: 28px }
+      &[src='resources/node-js.svg'] { height: 20px }
+      &[src='resources/sass.svg'] { height: 28px }
     }
     a {
       display: block;
