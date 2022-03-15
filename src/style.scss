@@ -460,7 +460,7 @@ main {
             &:hover {
               text-decoration: underline;
             }
-            &:focus:before {
+            &.gotcha:before {
               opacity: 1;
             }
             @include mobile-only {
