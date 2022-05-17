@@ -6,13 +6,13 @@ $slate: #212526;
 $text-color: $white;
 $divider-color: $orange;
 $general-spacing: 25px;
-$mobile-spacing: 40px;
+$mobile-spacing: 35px;
 $portfolio-transition: 750ms;
 $bubble-target: 25px;
 $bubble-cushion: 5px;
 $desktop-content-width: 800px;
 $fixed-column-width: 220px;
-$mobile-icon-size: 14vw;
+$mobile-icon-size: 12vw;
 $watch-icon-size: 150px;
 
 @mixin color-transition {
@@ -30,8 +30,8 @@ img, object {
 
 @mixin mobile-text {
     font-weight: 300;
-    font-size: 8vw;
-    line-height: calc(8vw * 1.25);
+    font-size: 6.5vw;
+    line-height: calc(6.5vw * 1.33);
     text-align: center;
 }
 
@@ -44,9 +44,9 @@ img, object {
 }
 
 @mixin jumbotron {
-  font-size: 44px;
-  line-height: 54px;
-  font-weight: 200;
+  font-size: 34px;
+  line-height: 51px;
+  font-weight: 100;
 }
 
 .desktop-only {
@@ -56,7 +56,8 @@ img, object {
 }
 
 body {
-  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-family: 'Saira', sans-serif;
+  letter-spacing: -1px;
   margin: 0;
   padding: 0;
   color: $text-color;
@@ -114,7 +115,7 @@ header {
     }
     li {
       $header-link-desktop-size: 22px;
-      $header-link-mobile-size: 28px;
+      $header-link-mobile-size: 22px;
       display: inline-block;
       & + li {
         margin-left: $general-spacing;
@@ -127,7 +128,7 @@ header {
         @include mobile-only {
           font-size: $header-link-mobile-size;
         }
-        font-weight: 500;
+        font-weight: 600;
         display: flex;
         align-items: flex-start;
         @include underlined-hyperlink($slate);
@@ -145,7 +146,7 @@ header {
           background-repeat: no-repeat;
           background-position: center;
           background-size: 130%;
-          transform: translateY(-3px);
+          transform: translateY(5px);
         }
       }
       &.home {
@@ -220,6 +221,7 @@ main {
 
     &:nth-of-type(1) {
 
+      white-space: nowrap;
       position: relative;
 
       & + section {
@@ -233,7 +235,7 @@ main {
         position: absolute;
         width: 100%;
         transform-origin: center;
-        transform: scale(1.75);
+        transform: scale(1.85);
       }
 
       & > * {
@@ -251,41 +253,21 @@ main {
         height: auto;
         @include mobile-only {
           margin: 0 auto;
-          width: 85%;
+          width: 60%;
         }
       }
 
-      h1 {
-        user-select: none;
-        position: relative;
-        font-size: 90px;
-        color: $orange;
-        margin: 0;
-
+      object.what-wide {
+        width: $desktop-content-width - $fixed-column-width - $general-spacing;
         @include mobile-only {
-          font-size: 20vw;
-          text-align: center;
+          display: none;
         }
       }
-
-      h2 {
-        user-select: none;
-        text-transform: uppercase;
-        font-weight: 400;
-        color: $blue;
-        margin: 0;
-        font-size: 24px;
-        letter-spacing: .45em;
-        transform: translateY(-10px);
-        font-size: 26px;
-        letter-spacing: 0.45em;
-        sup {
-          color: $orange;
-          vertical-align: middle;
-        }
+      object.what-tall {
+        display: none;
         @include mobile-only {
-          font-size: 8.5vw;
-          letter-spacing: inherit;
+          margin-top: $general-spacing;
+          display: block;
         }
       }
     }
@@ -304,10 +286,10 @@ main {
         flex-shrink: 0;
         margin: 0;
         margin-right: $general-spacing;
-        font-size: 28px;
-        font-weight: normal;
+        font-size: 26px;
+        font-weight: 300;
+        letter-spacing: 5px;
         text-transform: uppercase;
-        letter-spacing: 0.25em;
         color: $orange;
         @include mobile-only {
           font-size: 8vw;
@@ -332,7 +314,7 @@ main {
           margin-bottom: 18px;
           &[src='resources/skills.gif'] {
             width: 164px;
-            transform: translateX(-15px);
+            transform: translateX(-10px);
           }
           transform-origin: center;
           transition: transform $portfolio-transition + 250ms;
@@ -377,7 +359,8 @@ main {
             margin: 0;
           }
           a {
-            font-size: 28px;
+            font-size: 22px;
+            font-weight: 500;
             width: $fixed-column-width;
             display: flex;
             align-items: center;
@@ -393,8 +376,8 @@ main {
             &:before {
               content: '';
               display: inline-block;
-              width: 36px;
-              height: 36px;
+              width: 40px;
+              height: 40px;
               margin-right: 8px;
               background-repeat: no-repeat;
               background-position: center;
@@ -429,15 +412,15 @@ main {
       article {
         p {
           margin: 0;
-          font-size: 32px;
-          line-height: 42px;
-          font-weight: 200;
+          font-size: 26px;
+          line-height: 38px;
+          font-weight: 100;
           @include mobile-only {
             @include mobile-text;
           }
           a {
             text-decoration: none;
-            font-weight: 400;
+            font-weight: 700;
             color: $orange;
             cursor: pointer;
             &:before {
@@ -454,7 +437,7 @@ main {
               background-image: url(gotcha.png);
               background-repeat: no-repeat;
               pointer-events: none;
-              transform: translateY(-60%) translateX(-115%);
+              transform: translateY(-60%) translateX(-95%);
               transition: opacity 200ms;
             }
             &:hover {
@@ -476,6 +459,16 @@ main {
           & + p {
             margin-top: $general-spacing;
           }
+          &:last-child {
+            text-align: right;
+            img {
+              width: 350px;
+              height: auto;
+              @include mobile-only {
+                display: none;
+              }
+            }
+          }
         }
       }
     }
@@ -485,14 +478,16 @@ main {
         color: $blue;
         margin: 0;
         margin-top: $general-spacing;
-        font-size: 28px;
-        font-weight: normal;
+        font-size: 22px;
+        font-weight: 600;
         text-align: right;
         &:before {
           content: "—";
+          color: $orange;
+          font-weight: 100;
         }
         @include mobile-only {
-          font-size: 6vw;
+          font-size: 4.5vw;
         }
       }
       p {
@@ -501,7 +496,7 @@ main {
         &:before {
           font-weight: normal;
           position: absolute;
-          transform: translateX(-125%) translateY(25%);
+          transform: translateX(-125%) translateY(16%);
           font-size: 150%;
           content: '“';
         }
@@ -509,7 +504,7 @@ main {
           font-weight: normal;
           position: absolute;
           font-size: 150%;
-          transform: translateX(25%) translateY(25%);
+          transform: translateX(25%) translateY(16%);
           content: '”';
         }
         &:before, &:after {
@@ -549,7 +544,7 @@ main {
   
     &.portfolio {
       position: relative;
-      padding-bottom: 45px;
+      padding-bottom: 30px;
       @include mobile-only {
         padding-bottom: 0;
       }
@@ -634,6 +629,7 @@ main {
             display: block;
             &:after {
               content: '';
+              position: absolute;
               width: 44px;
               height: 44px;
               margin-left: 4px;
@@ -645,6 +641,7 @@ main {
               background-size: contain;
               @include mobile-only {
                 display: block;
+                position: static;
                 margin: 10px auto 0 auto;
                 width: 60px;
                 height: 60px;
@@ -720,12 +717,14 @@ main {
         @mixin skill-magnifier($class, $size, $weight, $experience) {
           &.#{ $class } {
             font-size: $size;
+            line-height: $size;
             font-weight: $weight;
             &:after {
               content: $experience;
+              transform: translateY(-20%);
             }
             &:hover {
-              transform: scale(calc(50px / $size));
+              transform: scale(calc(40px / $size));
               &:after {
                 opacity: 1;
               }
@@ -745,7 +744,8 @@ main {
             text-shadow: 0px 0px 20px #444;
           }
           &:after {
-            font-weight: 200;
+            font-weight: 100;
+            letter-spacing: 0;
             position: absolute;
             display: block;
             color: $white;
@@ -758,11 +758,11 @@ main {
           &:nth-child(3n+1) { color: $orange }
           &:nth-child(3n+2) { color: $blue }
           &:nth-child(3n+3) { color: $yellow }
-          @include skill-magnifier('level-1', 18px, 200, 'Smidge of experience');
-          @include skill-magnifier('level-2', 24px, 200, 'Smattering of experience');
-          @include skill-magnifier('level-3', 30px, 300, 'Some experience');
-          @include skill-magnifier('level-4', 36px, 400, 'Lots of experience');
-          @include skill-magnifier('level-5', 42px, 700, 'Boatloads of experience');
+          @include skill-magnifier('level-1', 15px, 100, 'Smidge of experience');
+          @include skill-magnifier('level-2', 20px, 200, 'Smattering of experience');
+          @include skill-magnifier('level-3', 25px, 300, 'Some experience');
+          @include skill-magnifier('level-4', 30px, 400, 'Lots of experience');
+          @include skill-magnifier('level-5', 35px, 500, 'Boatloads of experience');
         }
       }
     }
@@ -799,15 +799,15 @@ footer {
     font-size: 18px;
     line-height: 18px;
     text-transform: uppercase;
-    letter-spacing: 6px;
+    letter-spacing: 3px;
     padding: 6px 0 3px 0;
     max-width: $desktop-content-width;
     margin: 0 auto;
     margin-bottom: 15px;
     @include mobile-only {
       letter-spacing: 0;
-      font-size: 24px;
-      line-height: 32px;
+      font-size: 5vw;
+      line-height: 6vw;
     }
   }
 
@@ -821,15 +821,38 @@ footer {
       margin: 0 $general-spacing;
       @include mobile-only {
         display: block;
-        margin: 10px 0;
+        margin: $mobile-spacing 0 0 0;
+      }
+    }
+    @mixin mobile-vendor-logos($width: 33%) {
+      @include mobile-only {
+        height: auto;
+        width: $width;
       }
     }
     img {
       height: 24px;
-      &[src='resources/digital-ocean.svg'] { height: 22px }
-      &[src='resources/lets-encrypt.svg'] { height: 28px }
-      &[src='resources/node-js.svg'] { height: 20px }
-      &[src='resources/sass.svg'] { height: 28px }
+      @include mobile-vendor-logos;
+      &[src='resources/digital-ocean.svg'] {
+        height: 22px;
+        @include mobile-vendor-logos(45%);
+      }
+      &[src='resources/lets-encrypt.svg'] {
+        height: 28px;
+        @include mobile-vendor-logos(45%);
+      }
+      &[src='resources/node-js.svg'] {
+        height: 20px;
+        @include mobile-vendor-logos;
+      }
+      &[src='resources/sass.svg'] {
+        height: 28px;
+        @include mobile-vendor-logos(22%);
+      }
+      &[src='resources/gulp.svg'] {
+        height: 28px;
+        @include mobile-vendor-logos(25%);
+      }
     }
     a {
       display: block;
@@ -849,8 +872,8 @@ aside {
   background-position: center;
   background-repeat: no-repeat;
   background-size: $watch-icon-size;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAASAgMAAAD9BbyhAAAACVBMVEX////j4NshJSY0cUD7AAAAAXRSTlMAQObYZgAAADZJREFUeAFjYA0NYGBgWzUBmRBbNYWBITI0lYEhNTISTDgAiSggsRJEhEaCCbASsGJ0A8CGAgDJ6BV3QwqwxwAAAABJRU5ErkJggg==');
   image-rendering: pixelated;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWAgMAAABBb5lxAAAACVBMVEW8AADj4NshJSZnEzPvAAAAAXRSTlMAQObYZgAAAHdJREFUeF7t18sJgDAQBmGbsB+bWA+WkH5Sggf/KhV0IUSMGMlBmTl/5310Xm9ZXdo1g01K+h6DwWCOLGdm7xnMUdBsSTscygwWFA8wanFYy2AOGzCYFG8ZzOflYwaz07xsyWApgql6icPa3Zawn39tMBgsq8RgK2gPr/ze3vlRAAAAAElFTkSuQmCC');
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -913,7 +936,7 @@ a.modal {
   transition: opacity 500ms;
   transition-delay: 500ms;
   color: $white;
-  font-size: 28px;
+  font-size: 24px;
   body.modal-showing & {
     opacity: 1;
     pointer-events: all;
@@ -932,5 +955,6 @@ a.modal {
     max-height: 75vh;
     margin-bottom: $general-spacing;
     pointer-events: none;
+    image-rendering: auto;
   }
 }

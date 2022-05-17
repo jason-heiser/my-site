@@ -45,7 +45,26 @@ window.addEventListener('load', () => {
     }
   }
 
-  var transform = (element, total, i) => { 
+  var march = (cadence) => {
+    var letters = cluster('g.web-development path');
+    letters.forEach((letter, index) => {
+      var rise = -5;
+      var even = index % 2 === 0;
+      var start = even ? 0 : rise;
+      var finish = even ? rise : 0;
+      var transform = (amount) => letter.style.transform = 'translateY(' + amount + 'px)';
+      letter.style.transition = 'transform 500ms';
+      transform(start);
+      setTimeout(() => transform(finish), cadence);
+    });
+  }
+
+  var doMarch = (cadence) => {
+    march(cadence);
+    setInterval(() => march(cadence), cadence * 2);
+  }
+
+  var sparkle = (element, total, i) => { 
     var scale = 1 - (i > (total / 2) ? (total - 1) - i : i) * 0.1;
     var rotation = element.style.transform.match(/rotate\(([0-9]+)deg\)/);
     var offset = element.classList.contains('.crooked-star') ? 90 : 45;
@@ -67,14 +86,16 @@ window.addEventListener('load', () => {
         var rotations = 10;
         var star = stars[index];
         for (i = 0; rotations > i; i++) {
-          var closure = (c) => () => transform(star, rotations, c);
+          var closure = (c) => () => sparkle(star, rotations, c);
           setTimeout(closure(i), i * 100);
         }
       }, speed);
     }
   }
-  doTwinkle(80);
-  doSparkle(800);
+  doTwinkle(150);
+  doSparkle(1000);
+  doMarch(2000);
+
 });
 
 var runCarousel = (() => {
@@ -191,7 +212,7 @@ var runCarousel = (() => {
     window.addEventListener('keyup', kill);
   };
 
-  var links = Array.from(document.querySelectorAll('a')).filter(link => link.href.match(/(png|svg|jpg|jpeg)$/) !== null);
+  var links = Array.from(document.querySelectorAll('a')).filter(link => link.href.match(/(gif|png|svg|jpg|jpeg)$/) !== null);
   links.forEach(link => link.addEventListener('click', event => initModal(link, event)));
 
   window.addEventListener('load', () => {
