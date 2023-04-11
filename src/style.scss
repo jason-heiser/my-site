@@ -165,6 +165,9 @@ header {
       &.github a:before {
         background-image: url(github.svg);
       }
+      &.mastodon a:before {
+        background-image: url(mastodon.svg);
+      }
     }
   }
 }
@@ -446,15 +449,6 @@ main {
             &.gotcha:before {
               opacity: 1;
             }
-            @include mobile-only {
-              font-weight: 300;
-              color: $white;
-              cursor: initial;
-              &:hover {
-                text-decoration: none;
-              }
-            }
-
           }
           & + p {
             margin-top: $general-spacing;
@@ -462,8 +456,8 @@ main {
           &:last-child {
             text-align: right;
             img {
-              width: 350px;
-              height: auto;
+              width: auto;
+              height: 117px;
               @include mobile-only {
                 display: none;
               }
