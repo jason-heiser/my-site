@@ -16,9 +16,18 @@ if (window.location.hostname === 'jason.heiser.org') {
   _gaq.push(['_trackPageview']);
 
   (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    var ga = document.createElement('script');
+    ga.async = true;
+    ga.type = 'text/javascript';
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-NPRMCJHYBS';
+    var script = document.getElementsByTagName('script')[0];
+    script.parentNode.insertBefore(ga, script);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-NPRMCJHYBS');
   })();
 }
 
