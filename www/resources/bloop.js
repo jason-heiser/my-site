@@ -10,23 +10,6 @@
 /*                        */
 /*   Jason Heiser, 2022   */
 
-if (window.location.hostname === 'jason.heiser.org') {
-  (function() {
-    var ga = document.createElement('script');
-    ga.async = true;
-    ga.type = 'text/javascript';
-    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-NPRMCJHYBS';
-    var script = document.getElementsByTagName('script')[0];
-    script.parentNode.insertBefore(ga, script);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'G-NPRMCJHYBS');
-  })();
-}
-
 window.addEventListener('load', () => {
   document.body.classList.add('ready-freddy');
 
